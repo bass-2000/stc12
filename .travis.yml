@@ -1,0 +1,7 @@
+language: java
+
+notifications:
+  email:
+    recipients:
+      - bass-2000@yandex.ru
+    on_success: always # default: change

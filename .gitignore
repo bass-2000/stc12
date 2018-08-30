@@ -1,4 +1,6 @@
 .idea
+.idea/vcs.xml
+.idea/workspace.xml
 *.iml
 out
 build
