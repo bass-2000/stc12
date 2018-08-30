@@ -1,6 +1,7 @@
 package ru.innopolis.stc12.io;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Существует класс Employee с полями name, age, salary, job. Типы необходимо выбрать самостоятельно. Задание:
@@ -63,5 +64,20 @@ public class Employee implements Serializable {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return age == employee.age &&
+                Double.compare(employee.salary, salary) == 0 &&
+                Objects.equals(name, employee.name) &&
+                job == employee.job;
+    }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, age, salary, job);
+    }
 }
