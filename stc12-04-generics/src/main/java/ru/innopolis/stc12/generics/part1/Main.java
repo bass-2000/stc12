@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Integer[] arr1 = {15,23,56};
         List<Integer> list1 = Arrays.asList(arr1);
-        ObjectBox objectBox1 = new ObjectBox(new TreeSet(list1));
+        ObjectBox objectBox1 = new ObjectBox<Integer>(new TreeSet(list1));
         objectBox1.dump();
 
         objectBox1.addObject(11);

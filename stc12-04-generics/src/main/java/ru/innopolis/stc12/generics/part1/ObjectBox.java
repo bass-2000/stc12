@@ -50,7 +50,7 @@ public class ObjectBox<T> {
         if (enterSet.first() instanceof Number) {
 
             for (T num : enterSet) {
-          //      result += (int) num;
+                result += Integer.parseInt(num.toString()) ;
             }
         } else throw new MyCustomException();
         return result;
@@ -60,7 +60,7 @@ public class ObjectBox<T> {
         TreeSet<Integer> result = new TreeSet<Integer>();
         if (enterSet.first() instanceof Number) {
             for (T num : enterSet) {
-             //   result.add((int)num / (int) divider);
+                result.add(Integer.parseInt(num.toString())/ (int) divider);
             }
         } else throw new MyCustomException();
         return result;
