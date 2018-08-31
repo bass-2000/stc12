@@ -15,6 +15,7 @@
         <module>stc12-04-generics</module>
         <module>stc12-05-io</module>
         <module>stc12-06-multithread</module>
+        <module>stc12-07-proxy</module>
     </modules>
 
 
