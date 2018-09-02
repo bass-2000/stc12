@@ -1,7 +1,9 @@
 package ru.innopolis.stc12.proxy;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.TreeSet;
 
 public class MathBoxInvocationHandler<Integer> implements InvocationHandler {
     MathBoxInterface<Integer> mathB;
@@ -18,11 +20,12 @@ public class MathBoxInvocationHandler<Integer> implements InvocationHandler {
         Method[] methods = mathB.getClass().getMethods();
         for (Method m : methods) {
             if (method.getName().equals(m.getName()) && m.getAnnotation(ClearData.class) != null) {
-                System.out.println("Container cleared");
-                return method.invoke(mathB, args);
-            } else {
-                return method.invoke(mathB, args);
+                Field enterSet = mathB.getClass().getDeclaredField("enterSet");
+                enterSet.setAccessible(true);
+                enterSet.set(mathB, new TreeSet<Integer>());
+                System.out.println("Data was cleared");
             }
+
         }
         return method.invoke(mathB, args);
     }

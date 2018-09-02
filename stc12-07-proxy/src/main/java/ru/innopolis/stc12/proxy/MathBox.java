@@ -1,10 +1,13 @@
 package ru.innopolis.stc12.proxy;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.TreeSet;
 
+@Logger
 public class MathBox<Integer> implements MathBoxInterface {
-
-    private TreeSet<Integer> enterSet;
+    private TreeSet<java.lang.Integer> enterSet;
 
     /**
      * Элементы массива внутри конструктора раскладываются в подходящую коллекцию (выбрать самостоятельно),
@@ -12,13 +15,13 @@ public class MathBox<Integer> implements MathBoxInterface {
      *
      * @param args Конструктор на вход получает массив Integer. Элементы не могут повторяться
      */
-    public MathBox(Integer args[]) {
-        List<Integer> list = Arrays.asList(args);
-        this.enterSet = new TreeSet<Integer>(list);
+    public MathBox(java.lang.Integer args[]) {
+        List<java.lang.Integer> list = Arrays.asList(args);
+        this.enterSet = new TreeSet<java.lang.Integer>(list);
     }
 
     public MathBox(List<java.lang.Integer> list) {
-        this.enterSet = new TreeSet<Integer>(list);
+        this.enterSet = new TreeSet<java.lang.Integer>(list);
     }
 
     @Override
@@ -63,8 +66,8 @@ public class MathBox<Integer> implements MathBoxInterface {
      * @param divider делитель
      * @return коллекция с результатом деления
      */
-    public TreeSet<Integer> splitter(int divider) {
-        TreeSet<Integer> result = new TreeSet<Integer>();
+    public TreeSet<java.lang.Integer> splitter(int divider) {
+        TreeSet<java.lang.Integer> result = new TreeSet<java.lang.Integer>();
         for (int num : enterSet) {
             result.add(num / divider);
         }
@@ -77,12 +80,14 @@ public class MathBox<Integer> implements MathBoxInterface {
      * @param numToDel удаляемый из коллекции элемент(на самом деле он просто не включается в новую коллекцию)
      * @return коллекция с результатом
      */
+    @ClearData
     public TreeSet<java.lang.Integer> predator(int numToDel) {
-        TreeSet<Integer> result = new TreeSet<java.lang.Integer>();
+        TreeSet<java.lang.Integer> result = new TreeSet<java.lang.Integer>();
         for (int num : enterSet) {
             if (num != numToDel) result.add(num);
             else System.out.println("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
         }
+        enterSet = result;
         return result;
     }
 
