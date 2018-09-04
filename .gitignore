@@ -6,3 +6,4 @@ out
 build
 *.dat
 *.bin
+*/target
