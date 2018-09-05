@@ -17,6 +17,7 @@
         <module>stc12-06-multithread</module>
         <module>stc12-07-proxy</module>
         <module>stc12-08-classloaders</module>
+        <module>stc12-09-sockets</module>
     </modules>
 
 
