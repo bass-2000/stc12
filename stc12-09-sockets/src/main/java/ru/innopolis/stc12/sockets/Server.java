@@ -22,6 +22,7 @@ public class Server {
     }
 
     public static void sendBroadcastMessage(Message message) {
+        ConsoleHelper.writeMessage(message.getData());
         for (Connection connection : connectionMap.values()) {
             try {
                 connection.send(message);
