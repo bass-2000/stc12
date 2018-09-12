@@ -20,6 +20,7 @@
         <module>stc12-09-sockets</module>
         <module>stc12-10-lambdas</module>
         <module>stc12-11-gc</module>
+        <module>stc12-12-profiler</module>
     </modules>
 
 

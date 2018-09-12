@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
+    public static Integer CLIENT_PORT = 4998;
     public static void main(String[] args) {
         Socket socket = null;
         try {

@@ -1,6 +1,6 @@
 package ru.innopolis.stc12.sockets.lesson.server;
 
-import ru.innopolis.stc12.sockets.lesson.client.Client;
+import ru.innopolis.stc12.sockets.lesson.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
