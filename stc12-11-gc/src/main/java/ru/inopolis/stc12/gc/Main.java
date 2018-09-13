@@ -2,7 +2,9 @@ package ru.inopolis.stc12.gc;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Main {
@@ -12,16 +14,17 @@ public class Main {
     private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         in.readLine(); //искуственная пауза чтобы открыть в visualvm нужный pid для просмотра
         while (cont) {
-            System.out.println("Создаем объекты.");
+            System.out.println("Создаем объекты. " + sdf.format(Calendar.getInstance().getTime()));
 
             for (int i = 0; i < 5; i++) {
                 createObjects();
                 Thread.sleep(1000);
 
             }
-            System.out.println("Удаляем объекты.");
+            System.out.println("Удаляем объекты." + sdf.format(Calendar.getInstance().getTime()));
             for (int i = 0; i < 5; i++) {
                 removeObjects();
             }
