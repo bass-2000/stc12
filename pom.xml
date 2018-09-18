@@ -21,6 +21,7 @@
         <module>stc12-10-lambdas</module>
         <module>stc12-11-gc</module>
         <module>stc12-12-profiler</module>
+        <module>stc12-13-jdbc</module>
     </modules>
 
 
