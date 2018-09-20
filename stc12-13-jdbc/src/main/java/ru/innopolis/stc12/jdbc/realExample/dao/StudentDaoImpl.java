@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
     private static ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
@@ -45,6 +47,24 @@ public class StudentDaoImpl implements StudentDao {
             e.printStackTrace();
         }
         return student;
+    }
+
+    public List<Student> getStudentsByCity(int cityId) {
+        Connection connection = connectionManager.getConnection();
+        List<Student> students = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    SQLqueries.SELECT_STUDENTS_BY_CITY);
+            preparedStatement = StudentMapper.getPreparedStatementFromStudentId(preparedStatement, cityId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    students.add(StudentMapper.getStudentFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
     }
 
     @Override

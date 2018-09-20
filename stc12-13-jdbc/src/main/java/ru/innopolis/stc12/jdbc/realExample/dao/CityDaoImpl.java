@@ -69,16 +69,19 @@ public class CityDaoImpl implements CityDao {
 
     @Override
     public boolean deleteCityById(int id) {
-        Connection connection = connectionManager.getConnection();
-        City city = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement(
-                    SQLqueries.DELETE_FROM_CITIES_BY_ID);
-            preparedStatement = CityMapper.getPreparedStatementFromCityId(preparedStatement, id);
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        StudentDaoImpl studentDao = new StudentDaoImpl();
+        if (studentDao.getStudentsByCity(id).size() == 0) {
+            Connection connection = connectionManager.getConnection();
+            City city = null;
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = connection.prepareStatement(
+                        SQLqueries.DELETE_FROM_CITIES_BY_ID);
+                preparedStatement = CityMapper.getPreparedStatementFromCityId(preparedStatement, id);
+                preparedStatement.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             return false;
         }
         return true;
