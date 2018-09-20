@@ -2,24 +2,24 @@ package ru.innopolis.stc12.jdbc.realExample.dao;
 
 import ru.innopolis.stc12.jdbc.realExample.ConnectionManager.ConnectionManager;
 import ru.innopolis.stc12.jdbc.realExample.ConnectionManager.ConnectionManagerJdbcImpl;
-import ru.innopolis.stc12.jdbc.realExample.dao.mappers.StudentMapper;
-import ru.innopolis.stc12.jdbc.realExample.pojo.Student;
+import ru.innopolis.stc12.jdbc.realExample.dao.mappers.CityMapper;
+import ru.innopolis.stc12.jdbc.realExample.pojo.City;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StudentDaoImpl implements StudentDao {
+public class CityDaoImpl implements CityDao {
     private static ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
 
     @Override
-    public boolean addStudent(Student student) {
+    public boolean addCity(City city) {
         Connection connection = connectionManager.getConnection();
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement(SQLqueries.INSERT_INTO_STUDENTS_VALUES);
-            preparedStatement = StudentMapper.getPreparedStatementFromStudent(preparedStatement, student);
+            preparedStatement = connection.prepareStatement(SQLqueries.INSERT_INTO_CITIES_VALUES);
+            preparedStatement = CityMapper.getPreparedStatementFromCity(preparedStatement, city);
             preparedStatement.execute();
 
         } catch (SQLException e) {
@@ -30,32 +30,32 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public Student getStudentById(int id) {
+    public City getCityById(int id) {
         Connection connection = connectionManager.getConnection();
-        Student student = null;
+        City city = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    SQLqueries.SELECT_STUDENT_BY_ID);
-            preparedStatement = StudentMapper.getPreparedStatementFromStudentId(preparedStatement, id);
+                    SQLqueries.SELECT_CITY_BY_ID);
+            preparedStatement = CityMapper.getPreparedStatementFromCityId(preparedStatement, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                student = StudentMapper.getStudentFromResultSet(resultSet);
+                city = CityMapper.getCityFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return student;
+        return city;
     }
 
     @Override
-    public boolean updateStudent(Student student) {
-        if (student.getId() != 0) {
+    public boolean updateCity(City city) {
+        if (city.getId() != 0) {
             Connection connection = connectionManager.getConnection();
             PreparedStatement preparedStatement = null;
             try {
                 preparedStatement = connection.prepareStatement(
-                        SQLqueries.UPDATE_STUDENTS_BY_ID);
-                preparedStatement = StudentMapper.getPreparedStatementFromStudent(preparedStatement, student);
-                preparedStatement.setInt(6, student.getId());
+                        SQLqueries.UPDATE_CITIES_BY_ID);
+                preparedStatement = CityMapper.getPreparedStatementFromCity(preparedStatement, city);
+                preparedStatement.setInt(3, city.getId());
                 preparedStatement.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -68,14 +68,14 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public boolean deleteStudentById(int id) {
+    public boolean deleteCityById(int id) {
         Connection connection = connectionManager.getConnection();
-        Student student = null;
+        City city = null;
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(
-                    SQLqueries.DELETE_FROM_STUDENTS_BY_ID);
-            preparedStatement = StudentMapper.getPreparedStatementFromStudentId(preparedStatement, id);
+                    SQLqueries.DELETE_FROM_CITIES_BY_ID);
+            preparedStatement = CityMapper.getPreparedStatementFromCityId(preparedStatement, id);
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -7,7 +7,7 @@ public interface StudentDao {
 
     Student getStudentById(int id);
 
-    boolean update(Student student);
+    boolean updateStudent(Student student);
 
     boolean deleteStudentById(int id);
 }
