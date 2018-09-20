@@ -18,10 +18,11 @@ public class StudentDaoImpl implements StudentDao {
         Connection connection = connectionManager.getConnection();
         PreparedStatement preparedStatement = null;
         try {
+            CityDaoImpl cityDao = new CityDaoImpl();
+            if (cityDao.getCityById(student.getCity().getId()) == null) cityDao.addCity(student.getCity());
             preparedStatement = connection.prepareStatement(SQLqueries.INSERT_INTO_STUDENTS_VALUES);
             preparedStatement = StudentMapper.getPreparedStatementFromStudent(preparedStatement, student);
             preparedStatement.execute();
-
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -48,6 +49,8 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public boolean updateStudent(Student student) {
+        CityDaoImpl cityDao = new CityDaoImpl();
+        if (cityDao.getCityById(student.getCity().getId()) == null) cityDao.addCity(student.getCity());
         if (student.getId() != 0) {
             Connection connection = connectionManager.getConnection();
             PreparedStatement preparedStatement = null;

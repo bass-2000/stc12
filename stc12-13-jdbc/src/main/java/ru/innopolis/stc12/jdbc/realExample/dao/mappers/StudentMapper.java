@@ -19,7 +19,7 @@ public class StudentMapper {
                         resultSet.getString("family_name"),
                         resultSet.getInt("age"),
                         resultSet.getString("contact"),
-                        resultSet.getInt("city"));
+                        CityMapper.getCityFromResultSet(resultSet));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -33,7 +33,7 @@ public class StudentMapper {
             preparedStatement.setString(2, student.getFamily_name());
             preparedStatement.setInt(3, student.getAge());
             preparedStatement.setString(4, student.getContact());
-            preparedStatement.setInt(5, student.getCity());
+            preparedStatement.setInt(5, student.getCity().getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }

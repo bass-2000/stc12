@@ -6,9 +6,9 @@ public class Student {
     private String family_name;
     private int age;
     private String contact;
-    private int city;
+    private City city;
 
-    public Student(int id, String name, String family_name, int age, String contact, int city) {
+    public Student(int id, String name, String family_name, int age, String contact, City city) {
         this.id = id;
         this.name = name;
         this.family_name = family_name;
@@ -57,11 +57,11 @@ public class Student {
         this.contact = contact;
     }
 
-    public int getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
