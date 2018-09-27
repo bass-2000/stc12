@@ -3,13 +3,12 @@ package ru.innopolis.stc12.generics.part1;
 
 import ru.innopolis.stc12.generics.Exceptions.MyCustomException;
 
-
 import java.util.*;
 
 public class ObjectBox<T> {
-    private TreeSet<T> enterSet;
+    private Set<T> enterSet = new TreeSet<T>();
 
-    public ObjectBox(TreeSet<T> enterSet) {
+    public ObjectBox(Set<T> enterSet) {
         this.enterSet = enterSet;
     }
 
@@ -47,7 +46,7 @@ public class ObjectBox<T> {
 
     public int summator() throws MyCustomException {
         int result = 0;
-        if (enterSet.first() instanceof Number) {
+        if (enterSet.iterator().next() instanceof Number) {
 
             for (T num : enterSet) {
                 result += Integer.parseInt(num.toString()) ;
@@ -56,11 +55,11 @@ public class ObjectBox<T> {
         return result;
     }
 
-    public TreeSet<Integer> splitter(int divider) throws MyCustomException {
-        TreeSet<Integer> result = new TreeSet<Integer>();
-        if (enterSet.first() instanceof Number) {
+    public List<Integer> splitter(int divider) throws MyCustomException {
+        List<Integer> result = new ArrayList<Integer>();
+        if (enterSet.iterator().next() instanceof Number) {
             for (T num : enterSet) {
-                result.add(Integer.parseInt(num.toString())/ (int) divider);
+                result.add(((Number) num).intValue() / (int) divider);
             }
         } else throw new MyCustomException();
         return result;

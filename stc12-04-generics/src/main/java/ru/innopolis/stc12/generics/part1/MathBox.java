@@ -1,12 +1,9 @@
 package ru.innopolis.stc12.generics.part1;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.TreeSet;
+import java.util.*;
 
 public class MathBox {
-    private TreeSet<Integer> enterSet;
+    private Set<Integer> enterSet;
 
     /**
      * Элементы массива внутри конструктора раскладываются в подходящую коллекцию (выбрать самостоятельно),
@@ -65,8 +62,8 @@ public class MathBox {
      * @param divider делитель
      * @return коллекция с результатом деления
      */
-    public TreeSet<Integer> splitter(int divider) {
-        TreeSet<Integer> result = new TreeSet<Integer>();
+    public List<Integer> splitter(int divider) {
+        List<Integer> result = new ArrayList<>();
         for (int num : enterSet) {
             result.add(num / divider);
         }
@@ -79,8 +76,8 @@ public class MathBox {
      * @param numToDel удаляемый из коллекции элемент(на самом деле он просто не включается в новую коллекцию)
      * @return коллекция с результатом
      */
-    public TreeSet<Integer> predator(int numToDel) {
-        TreeSet<Integer> result = new TreeSet<Integer>();
+    public List<Integer> predator(int numToDel) {
+        List<Integer> result = new ArrayList<>();
         for (int num : enterSet) {
             if (num != numToDel) result.add(num);
             else System.out.println("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");

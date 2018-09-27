@@ -2,10 +2,10 @@ package ru.innopolis.stc12.generics.part2;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class MathBox extends ObjectBox<Integer> {
-    private TreeSet<Integer> enterSet;
 
     /**
      * Элементы массива внутри конструктора раскладываются в подходящую коллекцию (выбрать самостоятельно),
@@ -45,8 +45,8 @@ public class MathBox extends ObjectBox<Integer> {
      * @param divider делитель
      * @return коллекция с результатом деления
      */
-    public TreeSet<Integer> splitter(int divider) {
-        TreeSet<Integer> result = new TreeSet<Integer>();
+    public Set<Integer> splitter(int divider) {
+        Set<Integer> result = new TreeSet<Integer>();
         for (int num : this.enterSet) {
             result.add(num / divider);
         }
