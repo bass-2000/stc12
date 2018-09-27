@@ -27,7 +27,7 @@ public class Main {
 
         try {
             MyCustomArrayUtil.arrayUniqueChecker(inputNumbers);
-        } catch (Exception e) {
+        } catch (NotUniqueNumberException e) {
             System.out.println(e);
         }
         Integer[] inputArray = MyCustomArrayUtil.intArrayToIntegerConverter(inputNumbers);

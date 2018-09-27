@@ -3,6 +3,9 @@ package ru.innopolis.stc12.collections;
 import java.util.*;
 
 public class MyCustomArrayUtil {
+    private MyCustomArrayUtil() {
+    }
+
     /**
      * Генератор массива с уникальными значениями
      *
@@ -51,11 +54,11 @@ public class MyCustomArrayUtil {
      * @param arr - массив для проверки
      * @throws Exception Предупреждение о том, что в массиве присутствует неуникальный элемент и он выводится после двоеточия
      */
-    public static void arrayUniqueChecker(int[] arr) throws Exception {
+    public static void arrayUniqueChecker(int[] arr) throws NotUniqueNumberException {
         Set<Integer> foundNumbers = new HashSet<Integer>();
         for (int num : arr) {
             if (foundNumbers.contains(num)) {
-                throw new Exception("not unique number:" + num);
+                throw new NotUniqueNumberException(num);
             }
             foundNumbers.add(num);
         }
@@ -67,11 +70,11 @@ public class MyCustomArrayUtil {
      * @param list - массив для проверки
      * @throws Exception Предупреждение о том, что в массиве присутствует неуникальный элемент и он выводится после двоеточия
      */
-    public static void arrayUniqueChecker(List<Integer> list) throws Exception {
+    public static void arrayUniqueChecker(List<Integer> list) throws NotUniqueNumberException {
         Set<Integer> foundNumbers = new HashSet<Integer>();
         for (int num : list) {
             if (foundNumbers.contains(num)) {
-                throw new Exception("not unique " + num);
+                throw new NotUniqueNumberException(num);
             }
             foundNumbers.add(num);
         }
