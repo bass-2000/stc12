@@ -59,8 +59,8 @@ public class MathBox extends ObjectBox<Integer> {
      * @param numToDel удаляемый из коллекции элемент(на самом деле он просто не включается в новую коллекцию)
      * @return коллекция с результатом
      */
-    public TreeSet<Integer> predator(int numToDel) {
-        TreeSet<Integer> result = new TreeSet<Integer>();
+    public Set<Integer> predator(int numToDel) {
+        Set<Integer> result = new TreeSet<Integer>();
         for (int num : this.enterSet) {
             if (num != numToDel) result.add(num);
             else System.out.println("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
