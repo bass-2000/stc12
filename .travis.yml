@@ -8,11 +8,11 @@ jdk:
   -oraclejdk8
 
 os:
-  -linux
+- linux
 
 branches:
   only:
-    -GradleBuild
+  - GradleBuild
 
 script:
 - ./gradlew assemble
