@@ -9,7 +9,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-//НАДО ПОЧИНИТЬ!111
+
 public class SomeClassTest {
     private SomeClass someClass;
     private Helper helper = Mockito.mock(Helper.class);
