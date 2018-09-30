@@ -1,9 +1,5 @@
-.idea
-.idea/vcs.xml
-.idea/workspace.xml
+.gradle/
+.idea/
+build/
+out/
 *.iml
-out
-build
-*.dat
-*.bin
-*/target
