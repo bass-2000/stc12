@@ -1,5 +1,5 @@
 
-description = ''
+description = 'stc12-15-testing'
 dependencies {
     compile group: 'log4j', name: 'log4j', version:'1.2.17'
     testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version:'2.19.1'

@@ -1,5 +1,5 @@
 
-description = ''
+description = 'stc12-08-classloaders'
 dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.2.0'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version:'5.2.0'
