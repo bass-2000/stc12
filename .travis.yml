@@ -13,6 +13,7 @@ os:
 branches:
   only:
   - GradleBuild
+  - master
 #script:
 #- ./gradlew build --scan -s
 
