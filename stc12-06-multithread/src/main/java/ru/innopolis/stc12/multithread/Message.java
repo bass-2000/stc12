@@ -1,5 +1,7 @@
 package ru.innopolis.stc12.multithread;
 
+import org.apache.log4j.Logger;
+
 class Message {
 
     volatile static int count = 0;
@@ -7,7 +9,7 @@ class Message {
     /**Метод выводит сообщение в консоль
      * @param s
      */
-    synchronized static void sendMessage(String s) {
-        System.out.println(s);
+    synchronized static void sendMessage(String s, Logger logger) {
+        logger.info(s);
     }
 }

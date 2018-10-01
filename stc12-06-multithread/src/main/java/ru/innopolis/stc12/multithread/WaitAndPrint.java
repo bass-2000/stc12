@@ -1,9 +1,12 @@
 package ru.innopolis.stc12.multithread;
 
+import org.apache.log4j.Logger;
+
 public class WaitAndPrint implements Runnable {
     private final int period;
     private String message;
     private Thread t = new Thread(this);
+    private Logger logger = Logger.getLogger(WaitAndPrint.class);
 
     WaitAndPrint(int period, String message) {
         this.period = period;
@@ -18,10 +21,10 @@ public class WaitAndPrint implements Runnable {
                 synchronized (Message.class) {
                     Message.class.wait();
                     if (Message.count % period == 0)
-                        Message.sendMessage(message);
+                        Message.sendMessage(message, logger);
                 }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             Thread.currentThread().interrupt();
         }
     }

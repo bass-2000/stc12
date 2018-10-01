@@ -1,5 +1,7 @@
 package ru.innopolis.stc12.multithread;
 
+import org.apache.log4j.BasicConfigurator;
+
 /**
  * Напишите программу, один поток которой каждую секунду отображает на экране данные о времени,
  * прошедшем от начала сессии, а другой ее поток выводит сообщение каждые 5 секунд.
@@ -16,6 +18,7 @@ package ru.innopolis.stc12.multithread;
 public class Main {
 
     public static void main(String[] args) {
+        BasicConfigurator.configure();
         Thread thread = new Thread(new Chronometer());
         thread.start();
         new WaitAndPrint(5, "Прошло 5 секунд!");
