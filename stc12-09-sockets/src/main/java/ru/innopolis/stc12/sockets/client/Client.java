@@ -64,6 +64,7 @@ public class Client {
                 }
             } catch (InterruptedException e) {
                 ConsoleHelper.writeMessage("Ошибка потока...");
+                Thread.currentThread().interrupt();
                 System.exit(1);
             }
             if (clientConnected) {

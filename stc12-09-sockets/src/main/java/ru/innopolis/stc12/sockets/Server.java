@@ -40,7 +40,7 @@ public class Server {
         }
 
         private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
-            while (true) {
+            while (socket != null && socket.getRemoteSocketAddress() != null) {
                 connection.send(new Message(MessageType.NAME_REQUEST));
                 Message answer = connection.receive();
 
@@ -55,6 +55,7 @@ public class Server {
                     }
                 }
             }
+            return null;
         }
 
         private void sendListOfUsers(Connection connection, String userName) throws IOException {
@@ -66,7 +67,7 @@ public class Server {
         }
 
         private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException {
-            while (true) {
+            while (socket != null && socket.getRemoteSocketAddress() != null) {
                 Message message = connection.receive();
                 if (message != null && message.getType() == MessageType.TEXT) {
                     sendBroadcastMessage(new Message(MessageType.TEXT, userName + ": " + message.getData()));

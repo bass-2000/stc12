@@ -12,11 +12,11 @@ import java.net.Socket;
 public class ClientListener extends Thread {
     @Override
     public void run() {
-        try {
-            ServerSocket serverSocket = new ServerSocket(Server.SERVER_PORT);
-            Socket socket = serverSocket.accept();
-            InputStream fromServer = socket.getInputStream();
-            BufferedReader serverReader = new BufferedReader(new InputStreamReader(fromServer));
+        try (ServerSocket serverSocket = new ServerSocket(Server.SERVER_PORT);
+             Socket socket = serverSocket.accept();
+             InputStream fromServer = socket.getInputStream();
+             BufferedReader serverReader = new BufferedReader(new InputStreamReader(fromServer));) {
+
             String message = null;
             while ((message = serverReader.readLine()) != null) {
                 System.out.println(message);

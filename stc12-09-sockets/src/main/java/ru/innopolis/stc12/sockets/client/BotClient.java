@@ -49,7 +49,7 @@ public class BotClient extends Client {
                         String text = massiv[1];
                         switch (text) {
                             case "дата":
-                                format = new SimpleDateFormat("d.MM.YYYY");
+                                format = new SimpleDateFormat("d.MM.yyyy");
                                 break;
                             case "день":
                                 format = new SimpleDateFormat("d");
@@ -58,7 +58,7 @@ public class BotClient extends Client {
                                 format = new SimpleDateFormat("MMMM");
                                 break;
                             case "год":
-                                format = new SimpleDateFormat("YYYY");
+                                format = new SimpleDateFormat("yyyy");
                                 break;
                             case "время":
                                 format = new SimpleDateFormat("H:mm:ss");

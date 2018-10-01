@@ -3,6 +3,7 @@ package ru.innopolis.stc12.jdbc.basicks;
 import java.sql.*;
 
 public class Example2 {
+    static ResultSet resultSet;
     public static void main(String[] args) {
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", "master");
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM public.students  WHERE public.students.city = ? AND age > ?");
@@ -19,8 +20,13 @@ public class Example2 {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 }
 
