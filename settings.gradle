@@ -1,4 +1,4 @@
-rootProject.name = 'module_project'
+rootProject.name = 'stc12'
 include ':stc12-02-exceptions'
 include ':stc12-03-collections'
 include ':stc12-04-generics'
