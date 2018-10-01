@@ -1,6 +1,7 @@
 package ru.innopolis.stc12.multithread;
 
-import org.junit.Assert;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class multithreadTest {
@@ -17,7 +18,7 @@ public class multithreadTest {
             Thread.currentThread().interrupt();
         }
         thread.isInterrupted();
-        Assert.assertTrue(chronometer.getCount()>0);
+        Assertions.assertTrue(chronometer.getCount() > 0);
     }
 
 }

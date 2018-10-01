@@ -5,7 +5,7 @@ import java.sql.*;
 public class Example2 {
     static ResultSet resultSet;
     public static void main(String[] args) {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", "master");
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", Example.password);
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM public.students  WHERE public.students.city = ? AND age > ?");
         ) {
             preparedStatement.setString(1, "Rostov");

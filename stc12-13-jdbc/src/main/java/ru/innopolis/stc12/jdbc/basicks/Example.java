@@ -3,8 +3,9 @@ package ru.innopolis.stc12.jdbc.basicks;
 import java.sql.*;
 
 public class Example {
+    final static String password = "master";
     public static void main(String[] args) {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", "master");
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", password);
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM public.students ");) {
 
