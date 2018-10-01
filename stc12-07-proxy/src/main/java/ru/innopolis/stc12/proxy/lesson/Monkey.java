@@ -2,7 +2,7 @@ package ru.innopolis.stc12.proxy.lesson;
 
 public abstract class Monkey {
     private String name;
-    public Integer age;
+    private Integer age;
     private String country;
     private String subType;
 

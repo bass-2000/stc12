@@ -1,8 +1,8 @@
 package ru.innopolis.stc12.proxy.lesson;
 
 public class Capucin extends Monkey {
-    public int charming;
-    protected int harmfull;
+    private int charming;
+    private int harmfull;
     private int footSize;
     private final int tailLength = 40;
 
