@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <display-name>MyFirstServlet</display-name>
+
+    <servlet>
+        <servlet-name>HelloWorld</servlet-name>
+        <servlet-class>ru.innopolis.stc12.servlets.controllers.HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloWorld</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Iterator</servlet-name>
+        <servlet-class>ru.innopolis.stc12.servlets.controllers.IteratorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Iterator</servlet-name>
+        <url-pattern>/iterator</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Students</servlet-name>
+        <servlet-class>ru.innopolis.stc12.servlets.controllers.StudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Students</servlet-name>
+        <url-pattern>/students</url-pattern>
+    </servlet-mapping>
+
+</web-app>
