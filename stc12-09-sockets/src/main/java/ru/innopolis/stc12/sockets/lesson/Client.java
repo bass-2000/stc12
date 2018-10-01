@@ -7,15 +7,10 @@ import java.util.Scanner;
 public class Client {
     public static Integer CLIENT_PORT = 4998;
     public static void main(String[] args) {
-        Socket socket = null;
-        try {
-            socket = new Socket("127.0.0.1", Server.SERVER_PORT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            OutputStreamWriter serverOutput = new OutputStreamWriter(socket.getOutputStream());
-            InputStreamReader serverInput = new InputStreamReader(socket.getInputStream());
+        try (Socket socket = new Socket("127.0.0.1", Server.SERVER_PORT);
+             OutputStreamWriter serverOutput = new OutputStreamWriter(socket.getOutputStream());
+             InputStreamReader serverInput = new InputStreamReader(socket.getInputStream());
+        ) {
             Scanner scanner = new Scanner(System.in);
             String message;
             BufferedReader bufferedReader = new BufferedReader(serverInput);
@@ -30,5 +25,6 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }

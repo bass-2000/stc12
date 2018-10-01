@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        in.readLine(); //искуственная пауза чтобы открыть в visualvm нужный pid для просмотра
+        String a = in.readLine(); //искуственная пауза чтобы открыть в visualvm нужный pid для просмотра
         while (cont) {
             System.out.println("Создаем объекты. " + sdf.format(Calendar.getInstance().getTime()));
 

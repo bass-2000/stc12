@@ -14,6 +14,7 @@ public class multithreadTest {
             Thread.currentThread().sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
         thread.isInterrupted();
         Assert.assertTrue(chronometer.getCount()>0);

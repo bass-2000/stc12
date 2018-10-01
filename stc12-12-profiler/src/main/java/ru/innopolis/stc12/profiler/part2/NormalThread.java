@@ -26,6 +26,7 @@ public class NormalThread implements Runnable {
                 sleep(period);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
             for (int i = 0; i < increment; i++) {
                 SomePojo somePojo = new SomePojo();

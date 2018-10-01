@@ -38,7 +38,7 @@ public class MathBox {
      */
     public double dividerExceptionInside(Integer a, Integer b) {
         try {
-            return a / b;
+            return (double) a / b;
         } catch (ArithmeticException e) {
             System.out.println("Catched Exception " + e);
         }
@@ -53,7 +53,7 @@ public class MathBox {
      */
     public double divider(Integer a, Integer b) throws MyCustomException {
         try {
-            return a / b;
+            return (double) a / b;
         } catch (ArithmeticException e) {
             throw new MyCustomException(e.getMessage() + " was catched and thrown as custom Exception");
         }

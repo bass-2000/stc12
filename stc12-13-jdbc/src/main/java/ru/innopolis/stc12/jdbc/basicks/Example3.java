@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class Example3 {
     public static void main(String[] args) {
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", "master");
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE students set age =35  WHERE public.students.id = ? ");
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", "master");
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE students set age =35  WHERE public.students.id = ? ");) {
+
             for (String arg : args) {
                 preparedStatement.setInt(1, Integer.parseInt(arg));
                 preparedStatement.addBatch();
