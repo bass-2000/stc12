@@ -19,4 +19,5 @@ dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version:'5.3.1'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.3.1'
     compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
 }
