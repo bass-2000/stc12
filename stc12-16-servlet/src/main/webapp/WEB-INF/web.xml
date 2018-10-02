@@ -33,4 +33,12 @@
         <url-pattern>/students</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Cities</servlet-name>
+        <servlet-class>ru.innopolis.stc12.servlets.controllers.CityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Cities</servlet-name>
+        <url-pattern>/cities</url-pattern>
+    </servlet-mapping>
 </web-app>

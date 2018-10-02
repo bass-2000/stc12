@@ -3,12 +3,12 @@ package ru.innopolis.stc12.servlets.pojo;
 public class City {
     private int id;
     private String name;
-    private int citizens;
+    private int population;
 
-    public City(int id, String name, int citizens) {
+    public City(int id, String name, int population) {
         this.id = id;
         this.name = name;
-        this.citizens = citizens;
+        this.population = population;
     }
 
     public int getId() {
@@ -27,12 +27,12 @@ public class City {
         this.name = name;
     }
 
-    public int getCitizens() {
-        return citizens;
+    public int getPopulation() {
+        return population;
     }
 
-    public void setCitizens(int citizens) {
-        this.citizens = citizens;
+    public void setPopulation(int population) {
+        this.population = population;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class City {
         return "City{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", citizens=" + citizens +
+                ", population=" + population +
                 '}';
     }
 }
