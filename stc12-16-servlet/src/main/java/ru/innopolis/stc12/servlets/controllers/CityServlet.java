@@ -2,6 +2,7 @@ package ru.innopolis.stc12.servlets.controllers;
 
 import ru.innopolis.stc12.servlets.pojo.City;
 import ru.innopolis.stc12.servlets.service.CityService;
+import ru.innopolis.stc12.servlets.service.CityServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,11 @@ import java.util.List;
 public class CityServlet extends HttpServlet {
     private CityService cityService;
 
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        cityService = new CityServiceImpl();
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<City> list = cityService.getAllCities();

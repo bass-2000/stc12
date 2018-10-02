@@ -121,16 +121,14 @@ public class StudentDaoImpl implements StudentDao {
         Student student = null;
         try (PreparedStatement statement = connection.prepareStatement(
                 "SELECT * from students");
-        ) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    result.add(new Student(resultSet.getInt("id"),
-                            resultSet.getString("name"),
-                            resultSet.getString("family_name"),
-                            resultSet.getInt("age"),
-                            resultSet.getString("contact"),
-                            resultSet.getInt("city")));
-                }
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                result.add(new Student(resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("family_name"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("contact"),
+                        resultSet.getInt("city")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

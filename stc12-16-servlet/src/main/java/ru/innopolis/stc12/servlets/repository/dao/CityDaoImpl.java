@@ -53,12 +53,9 @@ public class CityDaoImpl implements CityDao {
     public List<City> getAllCities() {
         List<City> result = new ArrayList<>();
         Connection connection = connectionManager.getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    SQLqueries.SELECT_ALL_CITIES);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                result = CityMapper.getListOfCitiesFromResultSet(resultSet);
-            }
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                SQLqueries.SELECT_ALL_CITIES); ResultSet resultSet = preparedStatement.executeQuery();) {
+            result = CityMapper.getListOfCitiesFromResultSet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
