@@ -1,7 +1,10 @@
 package ru.innopolis.stc12.exceptions;
 
 
+import org.apache.log4j.Logger;
+
 public class MathBox {
+    private static Logger logger = Logger.getLogger(MathBox.class);
     /**
      * @param a first parameter
      * @param b second parameter
@@ -31,18 +34,22 @@ public class MathBox {
         return factorial(value - 1) * value;
     }
 
-    /**
-     * @param a first parameter
-     * @param b second parameter
-     * @return dividing param a by b with catching Arithmetic Exception
-     */
-    public double dividerExceptionInside(Integer a, Integer b) {
+    public static void main(String[] args) throws Exception {
+        MathBox mathBox = new MathBox();
+
+        logger.info("Method summa: " + mathBox.summa(1, 3));
+        logger.info("\nMethod diff: " + mathBox.diff(1, 3));
         try {
-            return (double) a / b;
-        } catch (ArithmeticException e) {
-            System.out.println("Catched Exception " + e);
+            logger.info("\nMethod factorial: ");
+            logger.info(mathBox.factorial(Integer.MAX_VALUE));
+        } catch (StackOverflowError e) {
+            logger.error("Catched Exception " + e);
         }
-        return 0;
+        logger.info("\nMethod dividerExceptionInside: ");
+        logger.info(mathBox.dividerExceptionInside(13, 0));
+        logger.info("\nMethod divider throwing exception: ");
+        logger.info(mathBox.divider(26, 0));
+
     }
 
     /**
@@ -59,22 +66,18 @@ public class MathBox {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        MathBox mathBox = new MathBox();
-
-        System.out.println("Method summa: " + mathBox.summa(1, 3));
-        System.out.println("\nMethod diff: " + mathBox.diff(1, 3));
+    /**
+     * @param a first parameter
+     * @param b second parameter
+     * @return dividing param a by b with catching Arithmetic Exception
+     */
+    public double dividerExceptionInside(Integer a, Integer b) {
         try {
-            System.out.println("\nMethod factorial: ");
-            System.out.println(mathBox.factorial(Integer.MAX_VALUE));
-        } catch (StackOverflowError e) {
-            System.out.println("Catched Exception " + e);
+            return (double) a / b;
+        } catch (ArithmeticException e) {
+            logger.info("Catched Exception " + e);
         }
-        System.out.println("\nMethod dividerExceptionInside: ");
-        System.out.println(mathBox.dividerExceptionInside(13, 0));
-        System.out.println("\nMethod divider throwing exception: ");
-        System.out.println(mathBox.divider(26, 0));
-
+        return 0;
     }
 
 }
