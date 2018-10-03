@@ -1,13 +1,16 @@
 package ru.innopolis.stc12.lambdas.lesson.java7;
 
+import org.apache.log4j.Logger;
+
 import java.util.Scanner;
 
 public class Main {
+    private static Logger logger = Logger.getLogger(Main.class);
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите свою зарплату");
+        logger.info("Введите свою зарплату");
         final Integer salary = scanner.nextInt();
-        System.out.println("Введите страну");
+        logger.info("Введите страну");
         scanner.nextLine();
         String country = scanner.nextLine();
 
