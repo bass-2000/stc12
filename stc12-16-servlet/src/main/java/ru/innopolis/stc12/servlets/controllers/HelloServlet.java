@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class HelloServlet extends HttpServlet {
-    String testString = "";
+    static String testString = "";
+
+    public static String getTestString() {
+        return testString;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -17,5 +21,6 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         testString = req.getParameter("testText");
+        req.getRequestDispatcher("/hello.jsp").forward(req, resp);
     }
 }

@@ -15,5 +15,7 @@
 <%
     }
 %>
+<BR>
+<button type="button" name="back" onclick="history.back()">back</button>
 </body>
 </html>
