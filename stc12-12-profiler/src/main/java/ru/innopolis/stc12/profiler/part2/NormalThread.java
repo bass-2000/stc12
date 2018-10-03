@@ -1,10 +1,13 @@
 package ru.innopolis.stc12.profiler.part2;
 
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 
 public class NormalThread implements Runnable {
+    private static Logger logger = Logger.getLogger(NormalThread.class);
     private int period = 100;
     private int increment = 5000;
     private int threshold = 2000;
@@ -34,7 +37,7 @@ public class NormalThread implements Runnable {
                 leakableCollection.add(somePojo);
                 j++;
             }
-            System.out.println("Thread " + Thread.currentThread().getName() + " collize: " + leakableCollection.size());
+            logger.info("Thread " + Thread.currentThread().getName() + " collize: " + leakableCollection.size());
         }
 
     }

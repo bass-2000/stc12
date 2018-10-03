@@ -1,10 +1,13 @@
 package ru.innopolis.stc12.profiler.part3;
 
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    private static Logger logger = Logger.getLogger(Main.class);
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
@@ -36,9 +39,9 @@ public class Main {
             str.append(" которое было выведено на экран");
         }
 
-        System.out.print("Итог:");
-        System.out.print(System.currentTimeMillis() - startTime);
-        System.out.print(" мс");
+        logger.info("Итог:");
+        logger.info(System.currentTimeMillis() - startTime);
+        logger.info(" мс");
         scanner.nextLine();
     }
 }
