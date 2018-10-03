@@ -1,10 +1,13 @@
 package ru.innopolis.stc12.jdbc.realExample.ConnectionManager;
 
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManagerJdbcImpl implements ConnectionManager {
+    private static Logger logger = Logger.getLogger(ConnectionManagerJdbcImpl.class);
     private static ConnectionManager connectionManager;
 
     private ConnectionManagerJdbcImpl() {
@@ -24,7 +27,7 @@ public class ConnectionManagerJdbcImpl implements ConnectionManager {
         try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", "master");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return connection;
     }
