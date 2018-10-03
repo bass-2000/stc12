@@ -1,5 +1,6 @@
 package ru.innopolis.stc12.testing.first;
 
+import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,15 +10,16 @@ import java.io.IOException;
 
 public class SummatorTest {
     private Summator summator;
+    private static Logger logger = Logger.getLogger(SummatorTest.class);
 
     @BeforeAll
     static void beforeAll() {
-        System.out.println("This is @BeforeAll");
+        logger.info("This is @BeforeAll");
     }
 
     @BeforeEach
     void beforeEach() {
-        System.out.println("This is @BeforeEach");
+        logger.info("This is @BeforeEach");
         summator = new Summator();
     }
 

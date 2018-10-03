@@ -1,9 +1,12 @@
 package ru.innopolis.stc12.jdbc.basicks;
 
+import org.apache.log4j.Logger;
+
 import java.sql.*;
 
 public class Example2 {
     static ResultSet resultSet;
+    private static Logger logger = Logger.getLogger(Example2.class);
     public static void main(String[] args) {
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MobilePhones", "postgres", Example.password);
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM public.students  WHERE public.students.city = ? AND age > ?");
@@ -12,19 +15,19 @@ public class Example2 {
             preparedStatement.setInt(2, 19);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.print(resultSet.getString("name") + "; ");
-                System.out.print(resultSet.getString("family_name") + "; ");
-                System.out.print(resultSet.getInt("age") + "; ");
-                System.out.print(resultSet.getString("city") + "; ");
+                logger.info(resultSet.getString("name") + "; ");
+                logger.info(resultSet.getString("family_name") + "; ");
+                logger.info(resultSet.getInt("age") + "; ");
+                logger.info(resultSet.getString("city") + "; ");
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } finally {
             try {
                 resultSet.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
         }
     }
