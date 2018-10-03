@@ -28,7 +28,8 @@ public class KindMagicClassLoader extends ClassLoader {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return defineClass(name, classData, 0, classData.length);
+            int l = classData.length;
+            return defineClass(name, classData, 0, l);
         }
 
         return super.loadClass(name);
