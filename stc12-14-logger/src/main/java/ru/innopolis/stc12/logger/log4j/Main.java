@@ -3,7 +3,7 @@ package ru.innopolis.stc12.logger.log4j;
 import org.apache.log4j.Logger;
 
 public class Main {
-    final static Logger LOGGER = Logger.getLogger(Main.class);
+    static final Logger LOGGER = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
         LOGGER.debug("debug-message");

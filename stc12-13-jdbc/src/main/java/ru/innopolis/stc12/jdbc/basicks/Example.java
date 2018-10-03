@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class Example {
     private static Logger logger = Logger.getLogger(Example.class);
-    final static String SQL = "SELECT * FROM public.students";
+    static final String SQL = "SELECT * FROM public.students";
     private static ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
     public static void main(String[] args) {
         Connection connection = connectionManager.getConnection();

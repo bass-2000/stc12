@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 public class Simple {
-    final static Logger logger = Logger.getLogger(Simple.class);
+    static final Logger logger = Logger.getLogger(Simple.class);
     public static void main(String[] args) {
         logger.warn("ATTENCION!");
         try {

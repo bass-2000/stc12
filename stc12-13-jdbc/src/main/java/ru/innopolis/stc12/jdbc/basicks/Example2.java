@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class Example2 {
     static ResultSet resultSet;
     private static Logger logger = Logger.getLogger(Example2.class);
-    final static String SQL = "SELECT * FROM public.students  WHERE public.students.city = ? AND age > ?";
+    static final String SQL = "SELECT * FROM public.students  WHERE public.students.city = ? AND age > ?";
     private static ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
     public static void main(String[] args) {
         Connection connection = connectionManager.getConnection();

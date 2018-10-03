@@ -12,9 +12,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class WordFinderUserTest {
-    final static String FIRST_SENTENCE = "One";
-    final static String SECOND_SENTENCE = "Two";
-    final static String THIRD_SENTENCE = "Three";
+    static final String FIRST_SENTENCE = "One";
+    static final String SECOND_SENTENCE = "Two";
+    static final String THIRD_SENTENCE = "Three";
 
     private WordFinderUser wordFinderUser;
     private WordFinder wordFinder = Mockito.mock(WordFinder.class);
