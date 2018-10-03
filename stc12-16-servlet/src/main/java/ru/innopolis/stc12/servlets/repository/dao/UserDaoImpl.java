@@ -17,13 +17,14 @@ public class UserDaoImpl implements UserDao {
         User user = null;
         try (Connection connection = connectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     "SELECT * from users WHERE login = ?");) {
+                     "SELECT * from users WHERE username = ?");) {
+            statement.setString(1, login);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    user = new User(resultSet.getInt("id"),
-                            resultSet.getString("username"),
-                            resultSet.getString("password"),
-                            resultSet.getInt("role"));
+                    user = new User(resultSet.getInt(1),
+                            resultSet.getString(2),
+                            resultSet.getString(3),
+                            resultSet.getInt(4));
                 }
             }
         } catch (SQLException e) {

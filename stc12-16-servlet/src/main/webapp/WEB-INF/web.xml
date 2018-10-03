@@ -41,4 +41,22 @@
         <servlet-name>Cities</servlet-name>
         <url-pattern>/cities</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>ru.innopolis.stc12.servlets.controllers.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <servlet-class>ru.innopolis.stc12.servlets.controllers.DashboardController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/inner/dashboard</url-pattern>
+    </servlet-mapping>
 </web-app>

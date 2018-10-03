@@ -2,6 +2,7 @@ package ru.innopolis.stc12.servlets.service;
 
 import ru.innopolis.stc12.servlets.pojo.User;
 import ru.innopolis.stc12.servlets.repository.dao.UserDao;
+import ru.innopolis.stc12.servlets.service.utils.HashUtil;
 
 public class UserServiceImpl implements UserService {
     UserDao userDao;
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
         if ((login != null) && (password != null)) {
             user = userDao.getUserByLogin(login);
             if (user != null) {
-                if (user.getPassword().equals(password)) {
+                if (user.getPassword().equals(HashUtil.stringToMD5(password))) {
                     return true;
                 }
             }

@@ -23,4 +23,8 @@ public class HashUtil {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        System.out.println(stringToMD5("master"));
+    }
 }
