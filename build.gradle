@@ -1,35 +1,42 @@
-allprojects {
-    apply plugin: 'maven'
 
-    group = 'ru.innopolis.stc12'
-    version = '1.0'
-}
-
-subprojects {
-    apply plugin: 'java'
-    apply plugin: 'idea'
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
-    tasks.withType(JavaCompile) {
-        options.encoding = 'UTF-8'
-    }
-
+buildscript {
     repositories {
-        mavenLocal()
-
-        maven { url "http://repo.maven.apache.org/maven2" }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
-
     dependencies {
-        compile group: 'log4j', name: 'log4j', version:'1.2.17'
-        testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version:'2.19.1'
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.3.1'
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version:'5.3.1'
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.3.1'
-        compile 'javax.servlet:javax.servlet-api:3.1.0'
-        compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.6"
     }
-
-
 }
+apply plugin: 'sonarqube'
+apply plugin: 'java'
+apply plugin: 'idea'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+repositories {
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+apply plugin: "sonarqube"
+dependencies {
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.19.1'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.3.1'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.3.1'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.1'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "gradle"
+        property "sonar.projectKey", "bass-2000_stc12"
+    }
+}
+
+
