@@ -1,15 +1,17 @@
 package ru.innopolis.stc12.classloaders.lesson.classloaders2;
 
-public class EuropeanHuman implements Human {
+import org.apache.log4j.Logger;
 
+public class EuropeanHuman implements Human {
+    private static Logger logger = Logger.getLogger(EuropeanHuman.class);
     @Override
     public void eat(String what, int howMany) {
-        System.out.println("Omnomnom " + what + " count " + howMany);
+        logger.info("Omnomnom " + what + " count " + howMany);
     }
 
     @Override
     public void sleep(int duration) {
-        System.out.println("HHRRRRRR " + duration + " hours");
+        logger.info("HHRRRRRR " + duration + " hours");
     }
 
     @Override
