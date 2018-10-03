@@ -1,13 +1,16 @@
 package ru.innopolis.stc12.collections;
 
+import org.apache.log4j.Logger;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.TreeSet;
 
+
 public class MathBox {
     private TreeSet<Integer> enterSet;
-
+    private static Logger logger = Logger.getLogger(MathBox.class);
     /**
      * Элементы массива внутри конструктора раскладываются в подходящую коллекцию (выбрать самостоятельно),
      * являющуюся полем MathBox. Элементы должны отсортироваться
@@ -83,7 +86,7 @@ public class MathBox {
         TreeSet<Integer> result = new TreeSet<Integer>();
         for (int num : enterSet) {
             if (num != numToDel) result.add(num);
-            else System.out.println("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
+            else logger.info("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
         }
         return result;
     }

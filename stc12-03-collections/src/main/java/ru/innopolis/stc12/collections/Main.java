@@ -1,16 +1,18 @@
 package ru.innopolis.stc12.collections;
 
 
+import org.apache.log4j.Logger;
+
 import java.util.List;
 
 
 public class Main {
-
+    private static Logger logger = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
         int size = 5;
         solutionViaArray(size);
-        System.out.println("---------------------------------");
+        logger.info("---------------------------------");
         solutionViaArrayList(size);
 
     }
@@ -28,27 +30,27 @@ public class Main {
         try {
             MyCustomArrayUtil.arrayUniqueChecker(inputNumbers);
         } catch (NotUniqueNumberException e) {
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
         Integer[] inputArray = MyCustomArrayUtil.intArrayToIntegerConverter(inputNumbers);
 
-        System.out.println("Выводим нагенерённый массив размером " + inputArray.length + " элементов: ");
+        logger.info("Выводим нагенерённый массив размером " + inputArray.length + " элементов: ");
         for (int i : inputArray) {
-            System.out.print(i + " ");
+            logger.info(i + " ");
         }
 
         MathBox mathBox = new MathBox(inputArray);
-        System.out.println("\nВыводим toString:");
-        System.out.println(mathBox);
+        logger.info("\nВыводим toString:");
+        logger.info(mathBox);
 
-        System.out.println("Выводим summator:");
-        System.out.println(mathBox.summator());
+        logger.info("Выводим summator:");
+        logger.info(mathBox.summator());
 
-        System.out.println("Выводим splitter:");
-        System.out.println(mathBox.splitter(2));
+        logger.info("Выводим splitter:");
+        logger.info(mathBox.splitter(2));
 
-        System.out.println("Выводим predator:");
-        System.out.println(mathBox.predator(10));
+        logger.info("Выводим predator:");
+        logger.info(mathBox.predator(10));
     }
 
     /**
@@ -58,29 +60,29 @@ public class Main {
      */
     public static void solutionViaArrayList(int size) {
         List<Integer> list = MyCustomArrayUtil.generateArrayList(size);
-        System.out.println("Выводим нагенерённый списочный массив размером " + list.size() + " элементов: ");
+        logger.info("Выводим нагенерённый списочный массив размером " + list.size() + " элементов: ");
         for (int i : list) {
-            System.out.print(i + " ");
+            logger.info(i + " ");
         }
         try {
             MyCustomArrayUtil.arrayUniqueChecker(list);
         } catch (Exception e) {
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
 
 
         MathBox mathBox = new MathBox(list);
 
-        System.out.println("\nВыводим toString:");
-        System.out.println(mathBox);
+        logger.info("\nВыводим toString:");
+        logger.info(mathBox);
 
-        System.out.println("Выводим summator:");
-        System.out.println(mathBox.summator());
+        logger.info("Выводим summator:");
+        logger.info(mathBox.summator());
 
-        System.out.println("Выводим splitter:");
-        System.out.println(mathBox.splitter(2));
+        logger.info("Выводим splitter:");
+        logger.info(mathBox.splitter(2));
 
-        System.out.println("Выводим predator:");
-        System.out.println(mathBox.predator(10));
+        logger.info("Выводим predator:");
+        logger.info(mathBox.predator(10));
     }
 }
