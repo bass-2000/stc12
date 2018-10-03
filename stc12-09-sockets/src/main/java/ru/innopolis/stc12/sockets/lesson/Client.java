@@ -1,11 +1,14 @@
 package ru.innopolis.stc12.sockets.lesson;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
     public static Integer CLIENT_PORT = 4998;
+    private static Logger logger = Logger.getLogger(Client.class);
     public static void main(String[] args) {
         try (Socket socket = new Socket("127.0.0.1", Server.SERVER_PORT);
              OutputStreamWriter serverOutput = new OutputStreamWriter(socket.getOutputStream());
@@ -20,10 +23,10 @@ public class Client {
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
 
-                System.out.println("Server echo: " + bufferedReader.readLine());
+                logger.info("Server echo: " + bufferedReader.readLine());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
     }

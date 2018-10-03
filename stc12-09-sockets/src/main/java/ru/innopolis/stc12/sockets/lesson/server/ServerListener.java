@@ -1,5 +1,6 @@
 package ru.innopolis.stc12.sockets.lesson.server;
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.sockets.lesson.Client;
 
 import java.io.BufferedReader;
@@ -10,6 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerListener extends Thread {
+    private static Logger logger = Logger.getLogger(ServerListener.class);
     @Override
     public void run() {
         try (ServerSocket serverSocket = new ServerSocket(Client.CLIENT_PORT);
@@ -18,10 +20,10 @@ public class ServerListener extends Thread {
              BufferedReader clientReader = new BufferedReader(new InputStreamReader(fromClient));) {
             String message = null;
             while ((message = clientReader.readLine()) != null) {
-                System.out.println(message);
+                logger.info(message);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 }

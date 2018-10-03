@@ -1,12 +1,14 @@
 package ru.innopolis.stc12.sockets.lesson;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
     public static Integer SERVER_PORT = 4999;
-
+    private static Logger logger = Logger.getLogger(Server.class);
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
              Socket socket = serverSocket.accept();
@@ -17,12 +19,12 @@ public class Server {
 
             String message = null;
             while ((message = clientReader.readLine()) != null) {
-                System.out.println(message);
+                logger.info(message);
                 clientWriter.write("\"" + message + "\" received \n");
                 clientWriter.flush();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 }
