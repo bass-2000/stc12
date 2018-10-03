@@ -1,10 +1,12 @@
 package ru.innopolis.stc12.generics.part1;
 
+import org.apache.log4j.Logger;
+
 import java.util.*;
 
 public class MathBox {
     private Set<Integer> enterSet;
-
+    private Logger logger = Logger.getLogger(MathBox.class);
     /**
      * Элементы массива внутри конструктора раскладываются в подходящую коллекцию (выбрать самостоятельно),
      * являющуюся полем MathBox. Элементы должны отсортироваться
@@ -80,7 +82,7 @@ public class MathBox {
         List<Integer> result = new ArrayList<>();
         for (int num : enterSet) {
             if (num != numToDel) result.add(num);
-            else System.out.println("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
+            else logger.info("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
         }
         return result;
     }

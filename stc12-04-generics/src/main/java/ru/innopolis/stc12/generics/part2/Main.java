@@ -1,10 +1,13 @@
 package ru.innopolis.stc12.generics.part2;
 
+import org.apache.log4j.Logger;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
 
 public class Main {
+    private static Logger logger = Logger.getLogger(Main.class);
     public static void main(String[] args) {
         Integer[] arr1 = {15,23,56};
         List<Integer> list1 = Arrays.asList(arr1);
@@ -18,18 +21,18 @@ public class Main {
         mathBox1.dump();
 
         try{
-            System.out.println(mathBox1.summator());
+            logger.info(mathBox1.summator());
         }catch (Exception e){
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
 
         try{
-            System.out.println(mathBox1.splitter(2));
+            logger.info(mathBox1.splitter(2));
         }catch (Exception e){
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
 
-        System.out.println("\nС числами закончили!\n-------------------------------------\n");
+        logger.info("\nС числами закончили!\n-------------------------------------\n");
 
         String[] arr2 = {"Alexander","Mikhail", "Valera"};
         List<String> list2 = Arrays.asList(arr2);

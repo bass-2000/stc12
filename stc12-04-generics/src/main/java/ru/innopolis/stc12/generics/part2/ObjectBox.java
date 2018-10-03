@@ -1,6 +1,7 @@
 package ru.innopolis.stc12.generics.part2;
 
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.generics.Exceptions.MyCustomException;
 
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class ObjectBox<T> {
+    private static Logger logger = Logger.getLogger(ObjectBox.class);
     Set<T> enterSet;
 
     public ObjectBox(Set<T> enterSet) {
@@ -46,7 +48,7 @@ public class ObjectBox<T> {
     }
 
     void dump() {
-        System.out.println(this.toString());
+        logger.info(this.toString());
     }
 
     public int summator() throws MyCustomException {
