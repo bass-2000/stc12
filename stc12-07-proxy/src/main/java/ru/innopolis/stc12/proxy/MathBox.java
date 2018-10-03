@@ -1,12 +1,15 @@
 package ru.innopolis.stc12.proxy;
 
+import org.apache.log4j.Logger;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.TreeSet;
 
-@Logger
+@Logging
 public class MathBox<Integer> implements MathBoxInterface {
+    private static Logger logger = Logger.getLogger(MathBox.class);
     private TreeSet<java.lang.Integer> enterSet;
 
     /**
@@ -85,7 +88,7 @@ public class MathBox<Integer> implements MathBoxInterface {
         TreeSet<java.lang.Integer> result = new TreeSet<java.lang.Integer>();
         for (int num : enterSet) {
             if (num != numToDel) result.add(num);
-            else System.out.println("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
+            else logger.info("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
         }
         enterSet = result;
         return result;
