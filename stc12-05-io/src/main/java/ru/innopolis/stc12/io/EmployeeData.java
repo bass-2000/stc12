@@ -1,5 +1,7 @@
 package ru.innopolis.stc12.io;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.List;
 
 public class EmployeeData {
     private static String fileName = "C:\\TEMP\\MyTestData.txt";
-
+    private static Logger logger = Logger.getLogger(EmployeeData.class);
     /**
      * Вспомогательный мето, сохраняющий List элементов в fileName файл
      *
@@ -33,7 +35,7 @@ public class EmployeeData {
             objectOutputStream.writeObject(list);
             return true;
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
             return false;
         }
     }
@@ -48,6 +50,7 @@ public class EmployeeData {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName))) {
             list = (ArrayList<Employee>) objectInputStream.readObject();
         } catch (ClassNotFoundException | IOException e) {
+            logger.error(e.getMessage());
         }
         return list;
     }
@@ -114,7 +117,7 @@ public class EmployeeData {
             new FileOutputStream(fileName).close();
 
         } catch (IOException e) {
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
     }
 
@@ -179,7 +182,7 @@ public class EmployeeData {
      */
     public static void printFile() {
         ArrayList<Employee> list = EmployeeData.readListFromFile();
-        for (Employee e : list) System.out.println(e);
+        for (Employee e : list) logger.info(e);
     }
 
     public void setFileName(String fileName) {

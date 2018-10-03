@@ -1,12 +1,15 @@
 package ru.innopolis.stc12.io.onlessondemo.DataExample;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 
 public class Main {
+    private static Logger logger = Logger.getLogger(Main.class);
     public static void main(String[] args) {
         Person psn = new Person("Tom", 35, 1.9, true);
         writePerson(psn);
-        System.out.println(readPerson());
+        logger.info(readPerson());
     }
 
     public static void writePerson(Person person){
@@ -17,7 +20,7 @@ public class Main {
             dataOutputStream.writeBoolean(person.isMarried());
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
 
     }
@@ -30,7 +33,7 @@ public class Main {
             person.setHeight(dataInputStream.readDouble());
             person.setMarried(dataInputStream.readBoolean());
         }catch(IOException e){
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
         return person;
     }

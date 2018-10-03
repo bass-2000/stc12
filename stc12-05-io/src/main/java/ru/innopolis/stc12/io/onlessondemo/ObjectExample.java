@@ -1,11 +1,13 @@
 package ru.innopolis.stc12.io.onlessondemo;
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.io.onlessondemo.DataExample.Person;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class ObjectExample {
+    private static Logger logger = Logger.getLogger(ObjectExample.class);
     public static void main(String[] args) {
         String filename = "people.dat";
 
@@ -15,17 +17,17 @@ public class ObjectExample {
         persons.add(new Person("Fill",25,1.9, true));
         try(ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename))){
             objectOutputStream.writeObject(persons);
-            System.out.println("Запись произведена");
+            logger.info("Запись произведена");
         }catch (IOException ex){
-            System.out.println(ex);
+            logger.error(ex.getMessage());
     }
     ArrayList<Person> newPersons = null;
         try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filename))){
             newPersons = (ArrayList<Person>)objectInputStream.readObject();
         }catch (Exception e){
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
         for(Person p : newPersons){
-            System.out.println(p);
+            logger.info(p);
         }
 }}

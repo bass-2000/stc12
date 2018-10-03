@@ -1,9 +1,13 @@
 package ru.innopolis.stc12.io;
 
 
+import org.apache.log4j.Logger;
+
 import java.util.List;
 
+
 public class Main {
+    private static Logger logger = Logger.getLogger(Main.class);
     public static void main(String[] args) {
 
         EmployeeData.clearFile();
@@ -13,44 +17,44 @@ public class Main {
         Employee employee4 = new Employee("Kira", 68, 6900, Job.CLERK);
         Employee employee5 = new Employee("Kara", 68, 6900, Job.CLERK);
 
-        System.out.println("Запись данных в файл: ");
+        logger.info("Запись данных в файл: ");
         EmployeeData.save(employee1);
         EmployeeData.save(employee2);
         EmployeeData.save(employee3);
         EmployeeData.save(employee4);
         EmployeeData.save(employee5);
-        System.out.println("Данные записаны.");
+        logger.info("Данные записаны.");
 
-        System.out.println("Читаю данные из файла:");
+        logger.info("Читаю данные из файла:");
         EmployeeData.printFile();
 
-        System.out.println("Приступаю к удалению:");
-        System.out.println("Удаляю " + employee3.getName());
+        logger.info("Приступаю к удалению:");
+        logger.info("Удаляю " + employee3.getName());
         EmployeeData.delete(employee3);
-        System.out.println("Удаляю " + employee1.getName());
+        logger.info("Удаляю " + employee1.getName());
         EmployeeData.delete(employee1);
 
-        System.out.println("Добавляю " + employee1.getName());
+        logger.info("Добавляю " + employee1.getName());
         EmployeeData.save(employee1);
-        System.out.println("Добавляю " + employee1.getName());
+        logger.info("Добавляю " + employee1.getName());
         EmployeeData.save(employee1);
 
-        System.out.println("Удаляю " + employee1.getName());
+        logger.info("Удаляю " + employee1.getName());
         EmployeeData.delete(employee1);
         EmployeeData.printFile();
 
-        System.out.println("Метод поиска по имени: " + EmployeeData.getByName("Alex"));
+        logger.info("Метод поиска по имени: " + EmployeeData.getByName("Alex"));
 
         List<Employee> Mylist = EmployeeData.getByJob(Job.CLERK);
-        System.out.println("\nМетод поиска по Job: ");
-        for (Employee employee : Mylist) System.out.println(employee);
+        logger.info("\nМетод поиска по Job: ");
+        for (Employee employee : Mylist) logger.info(employee);
 
-        System.out.println("Метод saveOrUpdate:");
+        logger.info("Метод saveOrUpdate:");
         EmployeeData.saveOrUpdate(new Employee("Kara", 68, 999999, Job.ADMINISTRATOR));
         EmployeeData.saveOrUpdate(new Employee("Karra", 68, 999999, Job.ADMINISTRATOR));
         EmployeeData.printFile();
 
-        System.out.println("Метод changeAllWork:");
+        logger.info("Метод changeAllWork:");
         EmployeeData.changeAllWork(Job.ADMINISTRATOR, Job.COORDINATOR);
         EmployeeData.printFile();
     }
