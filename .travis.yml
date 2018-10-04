@@ -19,7 +19,7 @@ os:
 
 branches:
   only:
-  - GradleBuild
+  - anotherWayToFixSonar
   - master
 #script:
 #- ./gradlew build --scan -s
