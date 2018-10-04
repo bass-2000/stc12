@@ -32,10 +32,9 @@ sonarcloud:
   organization: $SONARCLOUD_ORGANIZATION
   token:
     secure: $SONARCLOUD_TOKEN
-
 script:
 - ./gradlew assemble
-- ./gradlew sonarqube
+- ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io
 - rm -rf .scannerwork
 
 notifications:
