@@ -2,13 +2,6 @@ language: java
 sudo: false
 install: true
 
-addons:
-  sonarcloud:
-    organization: $SONARCLOUD_ORGANIZATION
-    token:
-      secure: $SONARCLOUD_TOKEN
-
-
 dist: trusty
 
 jdk:
@@ -33,6 +26,12 @@ cache:
   directories:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
+
+addons:
+sonarcloud:
+  organization: $SONARCLOUD_ORGANIZATION
+  token:
+    secure: $SONARCLOUD_TOKEN
 
 script:
 - ./gradlew assemble
