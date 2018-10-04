@@ -34,8 +34,7 @@ addons:
 
 script:
 - ./gradlew assemble
-- ./gradlew check --rerun-tasks
-- sonar-scanner
+- ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=bass-2000-github -Dsonar.login=${SONAR_TOKEN}
 - rm -rf .scannerwork
 
 notifications:
