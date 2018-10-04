@@ -34,7 +34,7 @@ sonarcloud:
     secure: $SONARCLOUD_TOKEN
 script:
 - ./gradlew assemble
-- ./gradlew scanner
+- ./gradlew sonar-scanner
 - rm -rf .scannerwork
 
 notifications:
