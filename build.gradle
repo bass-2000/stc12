@@ -1,26 +1,38 @@
-allprojects  {
-  apply plugin: 'maven'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4")
+    }
+}
 
-  group = 'ru.innopolis.stc12'
-  version = '1.0'
+plugins {
+    id "org.sonarqube" version "2.6.1"
 }
 
 subprojects {
-  apply plugin: 'java'
+    apply plugin: 'java'
+    apply plugin: 'org.junit.platform.gradle.plugin'
+    apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+    }
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
 
-  tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-  }
-  
-  repositories {
-    mavenLocal()
-    
-    maven { url "http://repo.maven.apache.org/maven2" }
-  }
-
-  
+    dependencies {
+        compile group: 'log4j', name: 'log4j', version: '1.2.17'
+        testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
+        testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
+        testCompile group: 'org.mockito', name: 'mockito-core', version: '2.22.0'
+        // Enable use of the JUnitPlatform Runner within the IDE
+        testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
+    }
+    junitPlatform {
+        details 'tree'
+    }
   
   
 }
