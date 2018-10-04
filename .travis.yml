@@ -31,10 +31,10 @@ addons:
 sonarcloud:
   organization: $SONARCLOUD_ORGANIZATION
   token:
-    secure: $SONARCLOUD_TOKEN2
+    secure: $SONARCLOUD_TOKEN
 script:
 - ./gradlew assemble
-- ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io
+- ./gradlew scanner
 - rm -rf .scannerwork
 
 notifications:
