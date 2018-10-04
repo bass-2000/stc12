@@ -31,7 +31,7 @@ addons:
 sonarcloud:
   organization: $SONARCLOUD_ORGANIZATION
   token:
-    secure: $SONARCLOUD_TOKEN
+    secure: $SONARCLOUD_TOKEN2
 script:
 - ./gradlew assemble
 - ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io
