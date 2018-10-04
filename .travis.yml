@@ -12,7 +12,7 @@ os:
 
 branches:
   only:
-  - GradleBuild
+  - anotherWayToFixSonar
   - master
 
 
