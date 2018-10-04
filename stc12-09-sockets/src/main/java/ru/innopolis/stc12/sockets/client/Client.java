@@ -102,7 +102,7 @@ public class Client {
         protected void notifyConnectionStatusChanged(boolean clientConnected) {
             synchronized (Client.this) {
                 Client.this.clientConnected = clientConnected;
-                Client.this.notify();
+                Client.this.notifyAll();
             }
 
         }

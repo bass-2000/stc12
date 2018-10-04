@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
-    public static Integer CLIENT_PORT = 4998;
+    public static final Integer CLIENT_PORT = 4998;
     private static Logger logger = Logger.getLogger(Client.class);
     public static void main(String[] args) {
         try (Socket socket = new Socket("127.0.0.1", Server.SERVER_PORT);

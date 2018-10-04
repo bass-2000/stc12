@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-    public static Integer SERVER_PORT = 4999;
+    public static final Integer SERVER_PORT = 4999;
     private static Logger logger = Logger.getLogger(Server.class);
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT);

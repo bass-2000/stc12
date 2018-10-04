@@ -8,13 +8,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Server {
     private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
-
+    private static int attemp = 5;
     public static void main(String[] args) {
         ConsoleHelper.writeMessage("Input server port: ");
         try (ServerSocket serverSocket = new ServerSocket(ConsoleHelper.readInt())) {
             ConsoleHelper.writeMessage("Server started...");
-            while (true) {
+            while (attemp != 0) {
                 new Handler(serverSocket.accept()).start();
+                attemp--;
             }
         } catch (Exception e) {
             ConsoleHelper.writeMessage("Something wrong, Server socket closed.");
