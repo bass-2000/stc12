@@ -1,5 +1,5 @@
 # Java EE course by Innopolis University.
-group  stc12
+group stc12
 student Boyko A.S.
 
 [![Build Status](https://travis-ci.org/bass-2000/stc12.svg?branch=master)](https://travis-ci.org/bass-2000/stc12)
