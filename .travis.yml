@@ -28,7 +28,7 @@ cache:
 
 script:
 - ./gradlew assemble
-- ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=bass-2000_stc12 -Dsonar.login=${SONARCLOUD_TOKEN}
+- ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=bass-2000-github -Dsonar.login=${SONARCLOUD_TOKEN}
 - rm -rf .scannerwork
 
 notifications:
