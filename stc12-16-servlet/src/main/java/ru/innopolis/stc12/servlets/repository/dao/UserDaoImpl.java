@@ -1,5 +1,6 @@
 package ru.innopolis.stc12.servlets.repository.dao;
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.servlets.pojo.User;
 import ru.innopolis.stc12.servlets.repository.connectionManager.ConnectionManager;
 import ru.innopolis.stc12.servlets.repository.connectionManager.ConnectionManagerJdbcImpl;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 
 public class UserDaoImpl implements UserDao {
     ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
+    private static Logger logger = Logger.getLogger(UserDaoImpl.class);
 
     @Override
     public User getUserByLogin(String login) {
@@ -28,7 +30,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return null;
         }
         return user;

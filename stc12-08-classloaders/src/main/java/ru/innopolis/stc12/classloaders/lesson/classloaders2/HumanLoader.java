@@ -1,5 +1,7 @@
 package ru.innopolis.stc12.classloaders.lesson.classloaders2;
 
+import org.apache.log4j.Logger;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +10,7 @@ import java.net.URL;
 public class HumanLoader extends ClassLoader {
     private final String CLAZZNAME = "ru.innopolis.stc12.classloaders2.EuropeanHuman";
     private final String FILEDESTINATION = "file:C://TEMP/EuropeanHuman.class";
-
+    private static Logger logger = Logger.getLogger(HumanLoader.class);
     public HumanLoader(ClassLoader parent) {
         super(parent);
     }
@@ -35,7 +37,7 @@ public class HumanLoader extends ClassLoader {
             }
             fileData = byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
         return fileData;

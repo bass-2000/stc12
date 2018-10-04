@@ -1,5 +1,7 @@
 package ru.innopolis.stc12.servlets.repository.connectionManager;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -10,7 +12,7 @@ import java.util.Properties;
 public class ConnectionManagerJdbcImpl implements ConnectionManager {
     private static ConnectionManager connectionManager;
     Properties property = new Properties();
-
+    private static Logger logger = Logger.getLogger(ConnectionManagerJdbcImpl.class);
     private ConnectionManagerJdbcImpl() {
     }
 
@@ -28,7 +30,7 @@ public class ConnectionManagerJdbcImpl implements ConnectionManager {
             InputStream stream = loader.getResourceAsStream("config.properties");
             property.load(stream);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         String driver = property.getProperty("driver");
         String password = property.getProperty("password");
@@ -39,7 +41,7 @@ public class ConnectionManagerJdbcImpl implements ConnectionManager {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return connection;
     }

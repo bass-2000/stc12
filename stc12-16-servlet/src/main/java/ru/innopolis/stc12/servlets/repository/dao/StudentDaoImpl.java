@@ -1,5 +1,6 @@
 package ru.innopolis.stc12.servlets.repository.dao;
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.servlets.pojo.Student;
 import ru.innopolis.stc12.servlets.repository.connectionManager.ConnectionManager;
 import ru.innopolis.stc12.servlets.repository.connectionManager.ConnectionManagerJdbcImpl;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
     private static ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
+    private static Logger logger = Logger.getLogger(StudentDaoImpl.class);
 
     @Override
     public boolean addStudent(Student student) {
@@ -27,7 +29,7 @@ public class StudentDaoImpl implements StudentDao {
             statement.setInt(5, student.getCity());
             statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return false;
         }
         return true;
@@ -52,7 +54,7 @@ public class StudentDaoImpl implements StudentDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return null;
         }
         return student;
@@ -73,7 +75,7 @@ public class StudentDaoImpl implements StudentDao {
                 statement.setInt(6, student.getId());
                 statement.execute();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
                 return false;
             }
             return true;
@@ -92,7 +94,7 @@ public class StudentDaoImpl implements StudentDao {
             statement.setInt(1, id);
             statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return false;
         }
         return true;
@@ -108,7 +110,7 @@ public class StudentDaoImpl implements StudentDao {
                 statement.execute();
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
             return true;
         }
@@ -131,7 +133,7 @@ public class StudentDaoImpl implements StudentDao {
                         resultSet.getInt("city")));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return null;
         }
         return result;

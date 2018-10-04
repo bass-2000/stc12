@@ -1,5 +1,7 @@
 package ru.innopolis.stc12.classloaders.lesson.classloaders1;
 
+import org.apache.log4j.Logger;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class KindMagicClassLoader extends ClassLoader {
+    private static Logger logger = Logger.getLogger(KindMagicClassLoader.class);
     public KindMagicClassLoader(ClassLoader parent) {
         super(parent);
     }
@@ -26,7 +29,7 @@ public class KindMagicClassLoader extends ClassLoader {
                 }
                 classData = byteArrayOutputStream.toByteArray();
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
             int l = classData.length;
             return defineClass(name, classData, 0, l);

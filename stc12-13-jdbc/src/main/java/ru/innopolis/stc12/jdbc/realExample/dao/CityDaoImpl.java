@@ -1,5 +1,6 @@
 package ru.innopolis.stc12.jdbc.realExample.dao;
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.jdbc.realExample.ConnectionManager.ConnectionManager;
 import ru.innopolis.stc12.jdbc.realExample.ConnectionManager.ConnectionManagerJdbcImpl;
 import ru.innopolis.stc12.jdbc.realExample.dao.mappers.CityMapper;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 
 public class CityDaoImpl implements CityDao {
     private static ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
+    private static Logger logger = Logger.getLogger(CityDaoImpl.class);
 
     @Override
     public boolean addCity(City city) {
@@ -23,7 +25,7 @@ public class CityDaoImpl implements CityDao {
             preparedStatement.execute();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return false;
         }
         return true;
@@ -41,7 +43,7 @@ public class CityDaoImpl implements CityDao {
                 city = CityMapper.getCityFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return city;
     }
@@ -58,7 +60,7 @@ public class CityDaoImpl implements CityDao {
                 preparedStatement.setInt(3, city.getId());
                 preparedStatement.execute();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
                 return false;
             }
             return true;
@@ -80,7 +82,7 @@ public class CityDaoImpl implements CityDao {
                 preparedStatement = CityMapper.getPreparedStatementFromCityId(preparedStatement, id);
                 preparedStatement.execute();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
             return false;
         }

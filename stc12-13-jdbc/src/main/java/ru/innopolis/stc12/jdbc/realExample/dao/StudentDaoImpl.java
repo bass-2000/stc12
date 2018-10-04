@@ -1,5 +1,6 @@
 package ru.innopolis.stc12.jdbc.realExample.dao;
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.jdbc.realExample.ConnectionManager.ConnectionManager;
 import ru.innopolis.stc12.jdbc.realExample.ConnectionManager.ConnectionManagerJdbcImpl;
 import ru.innopolis.stc12.jdbc.realExample.dao.mappers.StudentMapper;
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
     private static ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
+    private static Logger logger = Logger.getLogger(StudentDaoImpl.class);
 
     @Override
     public boolean addStudent(Student student) {
@@ -26,7 +28,7 @@ public class StudentDaoImpl implements StudentDao {
             preparedStatement = StudentMapper.getPreparedStatementFromStudent(preparedStatement, student);
             preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return false;
         }
         return true;
@@ -44,7 +46,7 @@ public class StudentDaoImpl implements StudentDao {
                 student = StudentMapper.getStudentFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return student;
     }
@@ -62,7 +64,7 @@ public class StudentDaoImpl implements StudentDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return students;
     }
@@ -81,7 +83,7 @@ public class StudentDaoImpl implements StudentDao {
                 preparedStatement.setInt(6, student.getId());
                 preparedStatement.execute();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
                 return false;
             }
             return true;
@@ -101,7 +103,7 @@ public class StudentDaoImpl implements StudentDao {
             preparedStatement = StudentMapper.getPreparedStatementFromStudentId(preparedStatement, id);
             preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return false;
         }
         return true;

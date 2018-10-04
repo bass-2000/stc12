@@ -31,7 +31,7 @@ public class ConnectionManagerJdbcImpl implements ConnectionManager {
             InputStream stream = loader.getResourceAsStream("conf.properties");
             property.load(stream);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         String driver = property.getProperty("driver");
         String password = property.getProperty("password");
@@ -42,7 +42,7 @@ public class ConnectionManagerJdbcImpl implements ConnectionManager {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return connection;
     }

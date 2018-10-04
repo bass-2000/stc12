@@ -1,5 +1,6 @@
 package ru.innopolis.stc12.jdbc.realExample.dao.mappers;
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.jdbc.realExample.pojo.Student;
 
 import java.sql.PreparedStatement;
@@ -7,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StudentMapper {
+    private static Logger logger = Logger.getLogger(StudentMapper.class);
     private StudentMapper() {
     }
 
@@ -22,7 +24,7 @@ public class StudentMapper {
                         CityMapper.getCityFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return student;
     }
@@ -35,7 +37,7 @@ public class StudentMapper {
             preparedStatement.setString(4, student.getContact());
             preparedStatement.setInt(5, student.getCity().getId());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return preparedStatement;
     }
@@ -44,7 +46,7 @@ public class StudentMapper {
         try {
             preparedStatement.setInt(1, id);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return preparedStatement;
     }

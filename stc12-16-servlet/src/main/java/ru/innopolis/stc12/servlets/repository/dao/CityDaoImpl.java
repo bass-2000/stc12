@@ -1,6 +1,7 @@
 package ru.innopolis.stc12.servlets.repository.dao;
 
 
+import org.apache.log4j.Logger;
 import ru.innopolis.stc12.servlets.pojo.City;
 import ru.innopolis.stc12.servlets.repository.connectionManager.ConnectionManager;
 import ru.innopolis.stc12.servlets.repository.connectionManager.ConnectionManagerJdbcImpl;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class CityDaoImpl implements CityDao {
     private static ConnectionManager connectionManager = ConnectionManagerJdbcImpl.getInstance();
+    private static Logger logger = Logger.getLogger(CityDaoImpl.class);
 
     @Override
     public boolean addCity(City city) {
@@ -26,7 +28,7 @@ public class CityDaoImpl implements CityDao {
             preparedStatement.execute();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return false;
         }
         return true;
@@ -44,7 +46,7 @@ public class CityDaoImpl implements CityDao {
                 city = CityMapper.getCityFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return city;
     }
@@ -57,7 +59,7 @@ public class CityDaoImpl implements CityDao {
                 SQLqueries.SELECT_ALL_CITIES); ResultSet resultSet = preparedStatement.executeQuery();) {
             result = CityMapper.getListOfCitiesFromResultSet(resultSet);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return result;
     }
@@ -74,7 +76,7 @@ public class CityDaoImpl implements CityDao {
                 preparedStatement.setInt(3, city.getId());
                 preparedStatement.execute();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
                 return false;
             }
             return true;
@@ -93,7 +95,7 @@ public class CityDaoImpl implements CityDao {
             preparedStatement = CityMapper.getPreparedStatementFromCityId(preparedStatement, id);
             preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return false;
         }
         return true;

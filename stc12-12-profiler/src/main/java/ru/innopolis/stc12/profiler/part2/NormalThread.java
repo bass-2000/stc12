@@ -28,7 +28,7 @@ public class NormalThread implements Runnable {
             try {
                 sleep(period);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
                 Thread.currentThread().interrupt();
             }
             for (int i = 0; i < increment; i++) {
