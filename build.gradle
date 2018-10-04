@@ -19,8 +19,8 @@ subprojects {
     repositories {
         mavenCentral()
     }
-  sourceCompatibility = 1.8
-  targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     dependencies {
         compile group: 'log4j', name: 'log4j', version: '1.2.17'
@@ -33,6 +33,6 @@ subprojects {
     junitPlatform {
         details 'tree'
     }
-  
-  
+
+
 }
