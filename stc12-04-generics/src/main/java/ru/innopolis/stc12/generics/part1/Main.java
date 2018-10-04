@@ -34,7 +34,7 @@ public class Main {
             logger.error(e.getMessage());
         }
 
-        System.out.println("\nС числами закончили!\n-------------------------------------\n");
+        logger.info("\nС числами закончили!\n-------------------------------------\n");
 
         String[] arr2 = {"Alexander","Mikhail", "Valera"};
         List<String> list2 = Arrays.asList(arr2);
