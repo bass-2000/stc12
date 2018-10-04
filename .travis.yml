@@ -12,7 +12,7 @@ os:
 
 branches:
   only:
-  - anotherWayToFixSonar
+  - GradleBuild
   - master
 #script:
 #- ./gradlew build --scan -s
@@ -21,20 +21,14 @@ before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
-
 cache:
   directories:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 
-addons:
-sonarcloud:
-  organization: $SONARCLOUD_ORGANIZATION
-  token:
-    secure: $SONARCLOUD_TOKEN
 script:
 - ./gradlew assemble
-- sonar-scanner
+- ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=bass-2000-github -Dsonar.login=${SONARCLOUD_TOKEN}
 - rm -rf .scannerwork
 
 notifications:
