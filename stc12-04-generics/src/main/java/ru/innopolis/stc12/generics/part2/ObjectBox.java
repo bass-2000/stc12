@@ -2,7 +2,7 @@ package ru.innopolis.stc12.generics.part2;
 
 
 import org.apache.log4j.Logger;
-import ru.innopolis.stc12.generics.Exceptions.MyCustomException;
+import ru.innopolis.stc12.generics.exceptions.MyCustomException;
 
 import java.util.Objects;
 import java.util.Set;
@@ -34,7 +34,7 @@ public class ObjectBox<T> {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName().toString()+"{" +
+        return this.getClass().getSimpleName() + "{" +
                 "enterSet=" + this.enterSet +
                 '}';
     }
@@ -63,7 +63,7 @@ public class ObjectBox<T> {
     }
 
     public Set<Integer> splitter(int divider) throws MyCustomException {
-        Set<Integer> result = new TreeSet<Integer>();
+        Set<Integer> result = new TreeSet<>();
         if (this.enterSet.iterator().next() instanceof Number) {
             for (T num : this.enterSet) {
                 result.add(((Number) num).intValue() / divider);

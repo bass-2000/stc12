@@ -13,13 +13,13 @@ public class MathBox {
      *
      * @param args Конструктор на вход получает массив Integer. Элементы не могут повторяться
      */
-    public MathBox(Integer args[]) {
+    public MathBox(Integer[] args) {
         List<Integer> list = Arrays.asList(args);
-        this.enterSet = new TreeSet<Integer>(list);
+        this.enterSet = new TreeSet<>(list);
     }
 
     public MathBox(List<Integer> list) {
-        this.enterSet = new TreeSet<Integer>(list);
+        this.enterSet = new TreeSet<>(list);
     }
 
     @Override
