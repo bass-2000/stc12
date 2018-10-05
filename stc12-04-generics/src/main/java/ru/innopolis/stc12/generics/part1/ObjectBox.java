@@ -2,14 +2,14 @@ package ru.innopolis.stc12.generics.part1;
 
 
 import org.apache.log4j.Logger;
-import ru.innopolis.stc12.generics.Exceptions.MyCustomException;
+import ru.innopolis.stc12.generics.exceptions.MyCustomException;
 
 import java.util.*;
 
 
 public class ObjectBox<T> {
     private static Logger logger = Logger.getLogger(ObjectBox.class);
-    private Set<T> enterSet = new TreeSet<T>();
+    private Set<T> enterSet = new TreeSet<>();
 
     public ObjectBox(Set<T> enterSet) {
         this.enterSet = enterSet;
@@ -59,10 +59,10 @@ public class ObjectBox<T> {
     }
 
     public List<Integer> splitter(int divider) throws MyCustomException {
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
         if (enterSet.iterator().next() instanceof Number) {
             for (T num : enterSet) {
-                result.add(((Number) num).intValue() / (int) divider);
+                result.add(((Number) num).intValue() / divider);
             }
         } else throw new MyCustomException();
         return result;

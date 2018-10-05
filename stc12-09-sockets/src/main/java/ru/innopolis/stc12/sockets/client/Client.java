@@ -13,6 +13,7 @@ public class Client {
     protected Connection connection;
 
     private volatile boolean clientConnected = false;
+    private static final String UEXPECTEDMESSAGETYPE = "Unexpected MessageType";
 
     public static void main(String[] args) {
         Client client = new Client();
@@ -54,36 +55,27 @@ public class Client {
     }
 
     public void run() {
-        {
-            SocketThread socketThread = getSocketThread();
-            socketThread.setDaemon(true);
-            socketThread.start();
-            try {
-                synchronized (this) {
-                    wait();
-                }
-            } catch (InterruptedException e) {
-                ConsoleHelper.writeMessage("Ошибка потока...");
-                Thread.currentThread().interrupt();
-                System.exit(1);
-            }
-            if (clientConnected) {
-                ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду ‘exit’");
-                while (clientConnected) {
-                    String message = ConsoleHelper.readString();
-                    if (message.equalsIgnoreCase("exit")) {
-                        break;
-                    } else {
-                        if (shouldSendTextFromConsole()) {
-                            sendTextMessage(message);
-                        }
+        SocketThread socketThread = getSocketThread();
+        socketThread.setDaemon(true);
+        socketThread.start();
+
+        if (clientConnected) {
+            ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду ‘exit’");
+            while (clientConnected) {
+                String message = ConsoleHelper.readString();
+                if (message.equalsIgnoreCase("exit")) {
+                    break;
+                } else {
+                    if (shouldSendTextFromConsole()) {
+                        sendTextMessage(message);
                     }
                 }
-            } else {
-                ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
             }
+        } else {
+            ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
         }
     }
+
 
     public class SocketThread extends Thread {
 
@@ -114,14 +106,14 @@ public class Client {
                 try {
                     message = connection.receive();
                 } catch (ClassNotFoundException e) {
-                    throw new IOException("Unexpected MessageType");
+                    throw new IOException(UEXPECTEDMESSAGETYPE);
                 }
                 if (message.getType() == MessageType.NAME_REQUEST) {
                     connection.send(new Message(MessageType.USER_NAME, getUserName()));
                 } else {
                     if (message.getType() == MessageType.NAME_ACCEPTED) {
                         notifyConnectionStatusChanged(true);
-                    } else throw new IOException("Unexpected MessageType");
+                    } else throw new IOException(UEXPECTEDMESSAGETYPE);
                 }
 
             }
@@ -129,34 +121,34 @@ public class Client {
 
         protected void clientMainLoop() throws IOException, ClassNotFoundException {
             Message message;
-
-            while (true) {
-
+            while (clientConnected) {
                 try {
                     message = connection.receive();
                 } catch (Exception e) {
-                    break;
+                    throw new IOException(UEXPECTEDMESSAGETYPE);
                 }
-                if (message.getType() == MessageType.TEXT) processIncomingMessage(message.getData());
-                else {
-                    if (message.getType() == MessageType.USER_ADDED) informAboutAddingNewUser(message.getData());
-                    else {
-                        if (message.getType() == MessageType.USER_REMOVED)
-                            informAboutDeletingNewUser(message.getData());
-                        else break;
-                    }
+                switch (message.getType()) {
+                    case TEXT:
+                        processIncomingMessage(message.getData());
+                        break;
+                    case USER_ADDED:
+                        informAboutAddingNewUser(message.getData());
+                        break;
+                    case USER_REMOVED:
+                        informAboutDeletingNewUser(message.getData());
+                        break;
+                    default:
+                        break;
                 }
-
             }
-            throw new IOException("Unexpected MessageType");
-
         }
 
+        @Override
         public void run() {
             String serverAddress = getServerAddress();
             int serverPort = getServerPort();
-            try {
-                Socket socket = new Socket(serverAddress, serverPort);
+            try (Socket socket = new Socket(serverAddress, serverPort);
+            ) {
                 connection = new Connection(socket);
                 clientHandshake();
                 clientMainLoop();

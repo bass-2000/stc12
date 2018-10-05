@@ -14,6 +14,7 @@ public class CounterInvocationHandler implements InvocationHandler {
 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Class clazz = counter.getClass();
+        logger.info(clazz);
         if (counter.getClass().getAnnotation(Logged.class) != null) {
             long startTime = System.currentTimeMillis();
             logger.info("We call method + " + method.getName());

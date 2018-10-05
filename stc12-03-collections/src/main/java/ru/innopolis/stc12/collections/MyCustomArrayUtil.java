@@ -36,7 +36,7 @@ public class MyCustomArrayUtil {
     }
 
     public static List<Integer> generateArrayList(int n) {
-        List<Integer> arrayRandom = new ArrayList<Integer>(n);
+        List<Integer> arrayRandom = new ArrayList<>(n);
 
         for (int i = 0; i < n; i++) {
             Integer r = rand.nextInt(100);
@@ -55,7 +55,7 @@ public class MyCustomArrayUtil {
      * @throws Exception Предупреждение о том, что в массиве присутствует неуникальный элемент и он выводится после двоеточия
      */
     public static void arrayUniqueChecker(int[] arr) throws NotUniqueNumberException {
-        Set<Integer> foundNumbers = new HashSet<Integer>();
+        Set<Integer> foundNumbers = new HashSet<>();
         for (int num : arr) {
             if (foundNumbers.contains(num)) {
                 throw new NotUniqueNumberException(num);
@@ -71,7 +71,7 @@ public class MyCustomArrayUtil {
      * @throws Exception Предупреждение о том, что в массиве присутствует неуникальный элемент и он выводится после двоеточия
      */
     public static void arrayUniqueChecker(List<Integer> list) throws NotUniqueNumberException {
-        Set<Integer> foundNumbers = new HashSet<Integer>();
+        Set<Integer> foundNumbers = new HashSet<>();
         for (int num : list) {
             if (foundNumbers.contains(num)) {
                 throw new NotUniqueNumberException(num);

@@ -2,15 +2,12 @@ package ru.innopolis.stc12.proxy;
 
 import org.apache.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.TreeSet;
+import java.util.*;
 
 @Logging
-public class MathBox<Integer> implements MathBoxInterface {
+public class MathBox<T extends Number> implements MathBoxInterface {
     private static Logger logger = Logger.getLogger(MathBox.class);
-    private TreeSet<java.lang.Integer> enterSet;
+    private TreeSet<T> enterSet;
 
     /**
      * Элементы массива внутри конструктора раскладываются в подходящую коллекцию (выбрать самостоятельно),
@@ -18,13 +15,13 @@ public class MathBox<Integer> implements MathBoxInterface {
      *
      * @param args Конструктор на вход получает массив Integer. Элементы не могут повторяться
      */
-    public MathBox(java.lang.Integer args[]) {
-        List<java.lang.Integer> list = Arrays.asList(args);
-        this.enterSet = new TreeSet<java.lang.Integer>(list);
+    public MathBox(T[] args) {
+        List<T> list = Arrays.asList(args);
+        this.enterSet = new TreeSet<>(list);
     }
 
-    public MathBox(List<java.lang.Integer> list) {
-        this.enterSet = new TreeSet<java.lang.Integer>(list);
+    public MathBox(List<T> list) {
+        this.enterSet = new TreeSet<>(list);
     }
 
     @Override
@@ -55,8 +52,8 @@ public class MathBox<Integer> implements MathBoxInterface {
      */
     public int summator() {
         int result = 0;
-        for (int num : enterSet) {
-            result += num;
+        for (T num : enterSet) {
+            result += num.intValue();
         }
         return result;
     }
@@ -69,10 +66,10 @@ public class MathBox<Integer> implements MathBoxInterface {
      * @param divider делитель
      * @return коллекция с результатом деления
      */
-    public TreeSet<java.lang.Integer> splitter(int divider) {
-        TreeSet<java.lang.Integer> result = new TreeSet<java.lang.Integer>();
-        for (int num : enterSet) {
-            result.add(num / divider);
+    public Set<Integer> splitter(int divider) {
+        Set<Integer> result = new TreeSet<>();
+        for (T num : enterSet) {
+            result.add((num).intValue() / divider);
         }
         return result;
     }
@@ -84,10 +81,10 @@ public class MathBox<Integer> implements MathBoxInterface {
      * @return коллекция с результатом
      */
     @ClearData
-    public TreeSet<java.lang.Integer> predator(int numToDel) {
-        TreeSet<java.lang.Integer> result = new TreeSet<java.lang.Integer>();
-        for (int num : enterSet) {
-            if (num != numToDel) result.add(num);
+    public Set<T> predator(int numToDel) {
+        TreeSet<T> result = new TreeSet<>();
+        for (T num : enterSet) {
+            if (num.intValue() != numToDel) result.add(num);
             else logger.info("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");
         }
         enterSet = result;

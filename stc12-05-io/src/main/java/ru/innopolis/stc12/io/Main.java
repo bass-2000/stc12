@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Main {
     private static Logger logger = Logger.getLogger(Main.class);
+    private static final String DELETING = "Удаляю ";
     public static void main(String[] args) {
 
         EmployeeData.clearFile();
@@ -29,9 +30,9 @@ public class Main {
         EmployeeData.printFile();
 
         logger.info("Приступаю к удалению:");
-        logger.info("Удаляю " + employee3.getName());
+        logger.info(DELETING + employee3.getName());
         EmployeeData.delete(employee3);
-        logger.info("Удаляю " + employee1.getName());
+        logger.info(DELETING + employee1.getName());
         EmployeeData.delete(employee1);
 
         logger.info("Добавляю " + employee1.getName());
@@ -39,15 +40,15 @@ public class Main {
         logger.info("Добавляю " + employee1.getName());
         EmployeeData.save(employee1);
 
-        logger.info("Удаляю " + employee1.getName());
+        logger.info(DELETING + employee1.getName());
         EmployeeData.delete(employee1);
         EmployeeData.printFile();
 
         logger.info("Метод поиска по имени: " + EmployeeData.getByName("Alex"));
 
-        List<Employee> Mylist = EmployeeData.getByJob(Job.CLERK);
+        List<Employee> myList = EmployeeData.getByJob(Job.CLERK);
         logger.info("\nМетод поиска по Job: ");
-        for (Employee employee : Mylist) logger.info(employee);
+        for (Employee employee : myList) logger.info(employee);
 
         logger.info("Метод saveOrUpdate:");
         EmployeeData.saveOrUpdate(new Employee("Kara", 68, 999999, Job.ADMINISTRATOR));

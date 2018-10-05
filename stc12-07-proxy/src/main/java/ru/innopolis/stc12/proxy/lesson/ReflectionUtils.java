@@ -7,6 +7,8 @@ import java.lang.reflect.Method;
 
 public class ReflectionUtils {
     private static Logger logger = Logger.getLogger(ReflectionUtils.class);
+    private static final String CLAZZ = "Class ";
+    private static final String GETFIELDS = " getFields";
     private ReflectionUtils() {
     }
 
@@ -19,7 +21,7 @@ public class ReflectionUtils {
     }
 
     private static void printMethods(Class clazz){
-        logger.info("Class " + clazz.getMethods() + " getFields");
+        logger.info(CLAZZ + clazz.getMethods() + GETFIELDS);
         methodIterator(clazz.getMethods());
     }
 
@@ -36,12 +38,12 @@ public class ReflectionUtils {
     }
 
     public static void printFields(Class clazz){
-        logger.info("Class " + clazz.getName() + " getFields");
+        logger.info(CLAZZ + clazz.getName() + GETFIELDS);
         fieldIterator(clazz.getFields());
     }
 
     public static void printDeclaredFields(Class clazz){
-        logger.info("Class " + clazz.getName() + " getFields");
+        logger.info(CLAZZ + clazz.getName() + GETFIELDS);
         fieldIterator(clazz.getDeclaredFields());
     }
 

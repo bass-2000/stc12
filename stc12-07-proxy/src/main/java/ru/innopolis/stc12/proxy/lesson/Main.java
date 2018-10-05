@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         Capucin abou = new Capucin(59);
         Class<Capucin> clazz = (Class<Capucin>) abou.getClass();
-//        ReflectionUtils.printClass(clazz);
-
-        Capucin mrJenkins = new Capucin(10,100,30);
+        logger.info(abou);
+        logger.info(clazz);
+        Capucin mrJenkins = new Capucin();
         Field footSizeField = mrJenkins.getClass().getDeclaredField("footSize");
         footSizeField.setAccessible(true);
         logger.info(footSizeField.get(mrJenkins));

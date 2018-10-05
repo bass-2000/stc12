@@ -2,10 +2,7 @@ package ru.innopolis.stc12.generics.part2;
 
 import org.apache.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class MathBox extends ObjectBox<Integer> {
     private Logger logger = Logger.getLogger(MathBox.class);
@@ -15,9 +12,9 @@ public class MathBox extends ObjectBox<Integer> {
      *
      * @param args Конструктор на вход получает массив Integer. Элементы не могут повторяться
      */
-    public MathBox(Integer args[]) {
+    public MathBox(Integer[] args) {
         List<Integer> list = Arrays.asList(args);
-        this.enterSet = new TreeSet<Integer>(list);
+        this.enterSet = new TreeSet<>(list);
     }
 
     public MathBox(List<Integer> list) {
@@ -25,12 +22,27 @@ public class MathBox extends ObjectBox<Integer> {
         this.enterSet = new TreeSet(list);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MathBox mathBox = (MathBox) o;
+        return Objects.equals(logger, mathBox.logger);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(super.hashCode(), logger);
+    }
 
     /**
      * Метод, возвращающий сумму всех элементов коллекции
      *
      * @return возвращающает сумму всех элементов коллекции
      */
+    @Override
     public int summator() {
         int result = 0;
         for (int num : enterSet) {
@@ -47,8 +59,9 @@ public class MathBox extends ObjectBox<Integer> {
      * @param divider делитель
      * @return коллекция с результатом деления
      */
+    @Override
     public Set<Integer> splitter(int divider) {
-        Set<Integer> result = new TreeSet<Integer>();
+        Set<Integer> result = new TreeSet<>();
         for (int num : this.enterSet) {
             result.add(num / divider);
         }
@@ -62,7 +75,7 @@ public class MathBox extends ObjectBox<Integer> {
      * @return коллекция с результатом
      */
     public Set<Integer> predator(int numToDel) {
-        Set<Integer> result = new TreeSet<Integer>();
+        Set<Integer> result = new TreeSet<>();
         for (int num : this.enterSet) {
             if (num != numToDel) result.add(num);
             else logger.info("ATTENTION!!!\nОбнаружено число " + numToDel + " в массиве на удаление.\n");

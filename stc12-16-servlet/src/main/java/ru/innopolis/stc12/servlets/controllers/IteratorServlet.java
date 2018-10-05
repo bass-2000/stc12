@@ -1,5 +1,7 @@
 package ru.innopolis.stc12.servlets.controllers;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +12,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class IteratorServlet extends HttpServlet {
+    private static Logger logger = Logger.getLogger(IteratorServlet.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
         req.setAttribute("list", list);
-        req.getRequestDispatcher("/iterator.jsp").forward(req, resp);
+        try {
+            req.getRequestDispatcher("/iterator.jsp").forward(req, resp);
+        } catch (ServletException | IOException se) {
+            logger.error(se.getMessage());
+        }
     }
 }

@@ -17,16 +17,22 @@ public class Example {
         Connection connection = connectionManager.getConnection();
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SQL);) {
+            logResultSet(resultSet);
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    static void logResultSet(ResultSet resultSet) {
+        try {
             while (resultSet.next()) {
                 logger.info(resultSet.getString("name") + "; ");
                 logger.info(resultSet.getString("family_name") + "; ");
                 logger.info(resultSet.getInt("age") + "; ");
                 logger.info(resultSet.getString("city") + "; ");
-                resultSet.close();
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }
-
     }
 }

@@ -10,6 +10,8 @@ public class ConsoleHelper {
     private static Logger logger = Logger.getLogger(ConsoleHelper.class);
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+    private ConsoleHelper() {
+    }
 
     public static void writeMessage(String message) {
         logger.info(message);

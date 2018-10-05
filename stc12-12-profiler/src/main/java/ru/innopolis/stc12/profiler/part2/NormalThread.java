@@ -10,21 +10,18 @@ public class NormalThread implements Runnable {
     private static Logger logger = Logger.getLogger(NormalThread.class);
     private int period = 100;
     private int increment = 5000;
-    private int threshold = 2000;
     private ArrayList<SomePojo> leakableCollection;
     private boolean stopTime = false;
 
-    public NormalThread(int period, int increment, int threshold) {
+    public NormalThread(int period, int increment) {
         this.period = period;
         this.increment = increment;
-        this.threshold = threshold;
         this.leakableCollection = new ArrayList<>();
     }
 
     @Override
     public void run() {
         while (!stopTime) {
-            int j = 0;
             try {
                 sleep(period);
             } catch (InterruptedException e) {
@@ -33,9 +30,9 @@ public class NormalThread implements Runnable {
             }
             for (int i = 0; i < increment; i++) {
                 SomePojo somePojo = new SomePojo();
+                logger.info(somePojo);
                 somePojo = null;
                 leakableCollection.add(somePojo);
-                j++;
             }
             logger.info("Thread " + Thread.currentThread().getName() + " collize: " + leakableCollection.size());
         }

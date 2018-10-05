@@ -36,8 +36,7 @@ public class CityDaoImpl implements CityDao {
         Connection connection = connectionManager.getConnection();
         City city = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    SQLqueries.SELECT_CITY_BY_ID);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLqueries.SELECT_CITY_BY_ID);
             preparedStatement = CityMapper.getPreparedStatementFromCityId(preparedStatement, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 city = CityMapper.getCityFromResultSet(resultSet);
@@ -54,8 +53,7 @@ public class CityDaoImpl implements CityDao {
             Connection connection = connectionManager.getConnection();
             PreparedStatement preparedStatement = null;
             try {
-                preparedStatement = connection.prepareStatement(
-                        SQLqueries.UPDATE_CITIES_BY_ID);
+                preparedStatement = connection.prepareStatement(SQLqueries.UPDATE_CITIES_BY_ID);
                 preparedStatement = CityMapper.getPreparedStatementFromCity(preparedStatement, city);
                 preparedStatement.setInt(3, city.getId());
                 preparedStatement.execute();
@@ -72,10 +70,9 @@ public class CityDaoImpl implements CityDao {
     @Override
     public boolean deleteCityById(int id) {
         StudentDaoImpl studentDao = new StudentDaoImpl();
-        if (studentDao.getStudentsByCity(id).size() == 0) {
+        if (studentDao.getStudentsByCity(id).isEmpty()) {
             Connection connection = connectionManager.getConnection();
-            City city = null;
-            PreparedStatement preparedStatement = null;
+            PreparedStatement preparedStatement;
             try {
                 preparedStatement = connection.prepareStatement(
                         SQLqueries.DELETE_FROM_CITIES_BY_ID);
