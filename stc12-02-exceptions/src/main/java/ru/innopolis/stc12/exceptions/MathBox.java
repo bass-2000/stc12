@@ -48,7 +48,11 @@ public class MathBox {
         logger.info("\nMethod dividerExceptionInside: ");
         logger.info(mathBox.dividerExceptionInside(13, 0));
         logger.info("\nMethod divider throwing exception: ");
-        logger.info(mathBox.divider(26, 0));
+        try {
+            logger.info(mathBox.divider(26, 0));
+        } catch (MyCustomException e) {
+            logger.error(e.getMessage());
+        }
 
     }
 
@@ -60,6 +64,7 @@ public class MathBox {
      */
     public double divider(Integer a, Integer b) throws MyCustomException {
         try {
+            if (b == 0) throw new ArithmeticException();
             return (double) a / b;
         } catch (ArithmeticException e) {
             throw new MyCustomException(e.getMessage() + " was catched and thrown as custom Exception");
@@ -73,6 +78,7 @@ public class MathBox {
      */
     public double dividerExceptionInside(Integer a, Integer b) {
         try {
+            if (b == 0) throw new ArithmeticException();
             return (double) a / b;
         } catch (ArithmeticException e) {
             logger.info("Catched Exception " + e);

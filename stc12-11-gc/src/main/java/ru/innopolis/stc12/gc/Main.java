@@ -1,4 +1,4 @@
-package ru.inopolis.stc12.gc;
+package ru.innopolis.stc12.gc;
 
 import org.apache.log4j.Logger;
 
