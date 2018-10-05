@@ -1,34 +1,19 @@
 rootProject.name = 'stc12'
-include ':stc12-02-exceptions'
-include ':stc12-03-collections'
-include ':stc12-04-generics'
-include ':stc12-05-io'
-include ':stc12-06-multithread'
-include ':stc12-07-proxy'
-include ':stc12-08-classloaders'
-include ':stc12-09-sockets'
-include ':stc12-10-lambdas'
-include ':stc12-11-gc'
-include ':stc12-12-profiler'
-include ':stc12-13-jdbc'
-include ':stc12-14-logger'
-include ':stc12-15-testing'
-include ':stc12-16-servlet'
+include 'stc12-02-exceptions'
+include 'stc12-03-collections'
+include 'stc12-04-generics'
+include 'stc12-05-io'
+include 'stc12-06-multithread'
+include 'stc12-07-proxy'
+include 'stc12-08-classloaders'
+include 'stc12-09-sockets'
+include 'stc12-10-lambdas'
+include 'stc12-11-gc'
+include 'stc12-12-profiler'
+include 'stc12-13-jdbc'
+include 'stc12-14-logger'
+include 'stc12-15-testing'
+include 'stc12-16-servlet'
 
-project(':stc12-02-exceptions').projectDir = "$rootDir/stc12-02-exceptions" as File
-project(':stc12-03-collections').projectDir = "$rootDir/stc12-03-collections" as File
-project(':stc12-04-generics').projectDir = "$rootDir/stc12-04-generics" as File
-project(':stc12-05-io').projectDir = "$rootDir/stc12-05-io" as File
-project(':stc12-06-multithread').projectDir = "$rootDir/stc12-06-multithread" as File
-project(':stc12-07-proxy').projectDir = "$rootDir/stc12-07-proxy" as File
-project(':stc12-08-classloaders').projectDir = "$rootDir/stc12-08-classloaders" as File
-project(':stc12-09-sockets').projectDir = "$rootDir/stc12-09-sockets" as File
-project(':stc12-10-lambdas').projectDir = "$rootDir/stc12-10-lambdas" as File
-project(':stc12-11-gc').projectDir = "$rootDir/stc12-11-gc" as File
-project(':stc12-12-profiler').projectDir = "$rootDir/stc12-12-profiler" as File
-project(':stc12-13-jdbc').projectDir = "$rootDir/stc12-13-jdbc" as File
-project(':stc12-14-logger').projectDir = "$rootDir/stc12-14-logger" as File
-project(':stc12-15-testing').projectDir = "$rootDir/stc12-15-testing" as File
-project(':stc12-16-servlet').projectDir = "$rootDir/stc12-16-servlet" as File
 
 
