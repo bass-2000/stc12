@@ -15,7 +15,7 @@ public class Main {
         MathBoxInterface<Integer> proxedMathBox = (MathBoxInterface<Integer>) Proxy.newProxyInstance(
                 MathBoxInvocationHandler.class.getClassLoader(), new Class[]{MathBoxInterface.class}, new MathBoxInvocationHandler<Integer>(mathBox));
 
-        logger.info("MathBox method:");
+        logger.info("MathBox method: summator");
 
         logger.info(mathBox.summator());
 

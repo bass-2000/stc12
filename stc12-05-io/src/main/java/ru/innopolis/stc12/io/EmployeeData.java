@@ -40,13 +40,16 @@ public class EmployeeData {
         }
     }
 
+    private EmployeeData() {
+    }
+
     /**
      * Метод, возвращающий List элементов Employee из файла
      *
      * @return возвращает лист элементов
      */
-    public static ArrayList<Employee> readListFromFile() {
-        ArrayList<Employee> list = new ArrayList<>();
+    public static List<Employee> readListFromFile() {
+        List<Employee> list = new ArrayList<>();
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName))) {
             list = (ArrayList<Employee>) objectInputStream.readObject();
         } catch (ClassNotFoundException | IOException e) {
@@ -62,7 +65,7 @@ public class EmployeeData {
      * @return true, если запись успешна, false если был эксепшен
      */
     public static boolean save(Employee employee) {
-        ArrayList<Employee> list = readListFromFile();
+        List<Employee> list = readListFromFile();
         list.add(employee);
         clearFile();
         return saveListToFile(list);
@@ -75,7 +78,7 @@ public class EmployeeData {
      * @return true, если успешное удаление, false если был эксепшен
      */
     public static boolean delete(Employee employee) {
-        ArrayList<Employee> list = readListFromFile();
+        List<Employee> list = readListFromFile();
         boolean result = false;
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getName().equals(employee.getName())
@@ -103,7 +106,7 @@ public class EmployeeData {
      * @return сотрудника из файла
      */
     public static Employee getByName(String name) {
-        ArrayList<Employee> list = readListFromFile();
+        List<Employee> list = readListFromFile();
         Employee resultEmployee = null;
         for (Employee empl : list) if (empl.getName().equals(name)) resultEmployee = empl;
         return resultEmployee;
@@ -128,7 +131,7 @@ public class EmployeeData {
      * @return возвращает список сотрудников с искомой должностью
      */
     public static List<Employee> getByJob(Job job) {
-        ArrayList<Employee> list = readListFromFile();
+        List<Employee> list = readListFromFile();
         List<Employee> resultList = new ArrayList<>();
         for (Employee empl : list) if (empl.getJob().equals(job)) resultList.add(empl);
         return resultList;
@@ -141,7 +144,7 @@ public class EmployeeData {
      * @return возвращает True, если произошло обновление или сохранение, False если был Эксепшен
      */
     public static boolean saveOrUpdate(Employee employee) {
-        ArrayList<Employee> list = readListFromFile();
+        List<Employee> list = readListFromFile();
         boolean result = false;
         for (int i = 0; i < list.size(); i++) {
             if ((list.get(i).getName().equals(employee.getName()) && list.get(i).getAge() == employee.getAge())) {
@@ -164,28 +167,22 @@ public class EmployeeData {
      * @return true, если успешно, false если был эксепшен
      */
     public static boolean changeAllWork(Job pastJob, Job futureJob) {
-        ArrayList<Employee> list = readListFromFile();
-        boolean result = false;
+        List<Employee> list = readListFromFile();
         for (Employee employee : list) {
             if (employee.getJob().equals(pastJob)) {
                 employee.setJob(futureJob);
-                result = true;
+                return true;
             }
         }
         clearFile();
-        result = saveListToFile(list);
-        return result;
+        return saveListToFile(list);
     }
 
     /**
      * Метод вывода в консоль содержимого файла
      */
     public static void printFile() {
-        ArrayList<Employee> list = EmployeeData.readListFromFile();
+        List<Employee> list = EmployeeData.readListFromFile();
         for (Employee e : list) logger.info(e);
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 }

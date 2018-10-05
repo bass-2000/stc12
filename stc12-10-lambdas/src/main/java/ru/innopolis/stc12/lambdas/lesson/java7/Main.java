@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     private static Logger logger = Logger.getLogger(Main.class);
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         logger.info("Введите свою зарплату");
@@ -17,18 +18,14 @@ public class Main {
         NonFuncTaxCalc taxCalc = null;
         switch (country) {
             case "Russia":
-                taxCalc = new NonFuncTaxCalc() {
-                    public double calculateTax(int summ) {
-                        return summ * 0.13;
-                    }
-
-                };
+                taxCalc = summ -> summ * 0.13;
+                break;
             case "USA":
-                taxCalc = new NonFuncTaxCalc() {
-                    public double calculateTax(int summ) {
-                        return summ * 0.13;
-                    }
-                };
+                taxCalc = summ -> summ * 0.13;
+                break;
+            default:
         }
+        logger.info(salary);
+        logger.info(taxCalc != null ? taxCalc.calculateTax(salary) : 0);
     }
 }

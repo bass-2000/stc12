@@ -7,7 +7,8 @@ public class Chronometer implements Runnable {
     private int count;
     private int loopCount = 0;
     private Logger logger = Logger.getLogger(Chronometer.class);
-    public int getCount() {
+
+    int getCount() {
         return count;
     }
 

@@ -4,12 +4,15 @@ import org.apache.log4j.Logger;
 
 class Message {
 
-    volatile static int count = 0;
+    static volatile int count = 0;
+
+    private Message() {
+    }
 
     /**Метод выводит сообщение в консоль
      * @param s
      */
-    synchronized static void sendMessage(String s, Logger logger) {
+    static synchronized void sendMessage(String s, Logger logger) {
         logger.info(s);
     }
 }

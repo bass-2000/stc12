@@ -95,7 +95,6 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public boolean deleteStudentById(int id) {
         Connection connection = connectionManager.getConnection();
-        Student student = null;
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(

@@ -1,7 +1,7 @@
 package ru.innopolis.stc12.io.onlessondemo;
 
 import org.apache.log4j.Logger;
-import ru.innopolis.stc12.io.onlessondemo.DataExample.Person;
+import ru.innopolis.stc12.io.onlessondemo.dataexample.Person;
 
 import java.io.*;
 import java.util.ArrayList;

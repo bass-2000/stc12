@@ -1,4 +1,4 @@
-package ru.innopolis.stc12.io.onlessondemo.DataExample;
+package ru.innopolis.stc12.io.onlessondemo.dataexample;
 
 import org.apache.log4j.Logger;
 

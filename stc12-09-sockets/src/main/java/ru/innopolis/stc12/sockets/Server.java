@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Server {
     private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
     private static int attemp = 5;
+
     public static void main(String[] args) {
         ConsoleHelper.writeMessage("Input server port: ");
         try (ServerSocket serverSocket = new ServerSocket(ConsoleHelper.readInt())) {
@@ -44,16 +45,10 @@ public class Server {
             while (socket != null && socket.getRemoteSocketAddress() != null) {
                 connection.send(new Message(MessageType.NAME_REQUEST));
                 Message answer = connection.receive();
-
-                if (answer.getType() == MessageType.USER_NAME) {
-
-                    if (!answer.getData().isEmpty()) {
-                        if (!connectionMap.containsKey(answer.getData())) {
-                            connectionMap.put(answer.getData(), connection);
-                            connection.send(new Message(MessageType.NAME_ACCEPTED));
-                            return answer.getData();
-                        }
-                    }
+                if ((answer.getType() == MessageType.USER_NAME) && (!answer.getData().isEmpty()) && !connectionMap.containsKey(answer.getData())) {
+                    connectionMap.put(answer.getData(), connection);
+                    connection.send(new Message(MessageType.NAME_ACCEPTED));
+                    return answer.getData();
                 }
             }
             return null;
@@ -78,6 +73,7 @@ public class Server {
             }
         }
 
+        @Override
         public void run() {
             if (socket != null && socket.getRemoteSocketAddress() != null) {
                 ConsoleHelper.writeMessage("Established a new connection to a remote socket address: " + socket.getRemoteSocketAddress());
@@ -97,7 +93,7 @@ public class Server {
                     connectionMap.remove(userName);
                     sendBroadcastMessage(new Message(MessageType.USER_REMOVED, userName));
                 }
-                ConsoleHelper.writeMessage("Closed connection to a remote socket address: "); // + socketAddress);
+                ConsoleHelper.writeMessage("Closed connection to a remote socket address: ");
             }
         }
     }

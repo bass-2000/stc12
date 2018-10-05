@@ -13,4 +13,14 @@ public class SomePojo {
         b = String.valueOf(random.nextInt());
         o = random.nextInt();
     }
+
+    @Override
+    public String toString() {
+        return "SomePojo{" +
+                "random=" + random +
+                ", a=" + a +
+                ", b='" + b + '\'' +
+                ", o=" + o +
+                '}';
+    }
 }

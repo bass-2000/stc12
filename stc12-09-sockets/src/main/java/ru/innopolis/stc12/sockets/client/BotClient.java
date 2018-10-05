@@ -5,6 +5,7 @@ import ru.innopolis.stc12.sockets.ConsoleHelper;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 
 public class BotClient extends Client {
 
@@ -25,8 +26,8 @@ public class BotClient extends Client {
 
     @Override
     protected String getUserName() {
-        String botName = "date_bot_" + ((int) (Math.random() * 100));
-        return botName;
+        Random random = new Random();
+        return "date_bot_" + (random.nextInt(100));
     }
 
     public class BotSocketThread extends SocketThread {
@@ -60,9 +61,6 @@ public class BotClient extends Client {
                             case "год":
                                 format = new SimpleDateFormat("yyyy");
                                 break;
-                            case "время":
-                                format = new SimpleDateFormat("H:mm:ss");
-                                break;
                             case "час":
                                 format = new SimpleDateFormat("H");
                                 break;
@@ -72,11 +70,12 @@ public class BotClient extends Client {
                             case "секунды":
                                 format = new SimpleDateFormat("s");
                                 break;
+                            default:
+                                format = new SimpleDateFormat("H:mm:ss");
+                                break;
 
                         }
-                        if (format != null) {
                             sendTextMessage(String.format("Информация для %s: %s", name, format.format(Calendar.getInstance().getTime())));
-                        }
                     }
                 }
             }

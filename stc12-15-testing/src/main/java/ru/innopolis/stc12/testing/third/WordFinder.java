@@ -1,10 +1,10 @@
 package ru.innopolis.stc12.testing.third;
 
 import java.net.URL;
-import java.util.HashSet;
+import java.util.Set;
 
 public interface WordFinder {
-    HashSet<String> getSentences(URL sourcs);
+    Set<String> getSentences(URL sourcs);
 
     boolean checkInWordInSentence(String sentence, String word);
 

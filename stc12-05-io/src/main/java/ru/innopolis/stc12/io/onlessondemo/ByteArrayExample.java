@@ -14,7 +14,5 @@ public class ByteArrayExample {
             logger.info(b);
         }
 
-        String text = "My string";
-
     }
 }

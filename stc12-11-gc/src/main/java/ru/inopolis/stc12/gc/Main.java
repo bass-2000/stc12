@@ -17,14 +17,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        String a = in.readLine(); //искуственная пауза чтобы открыть в visualvm нужный pid для просмотра
+        String str = in.readLine(); //искуственная пауза чтобы открыть в visualvm нужный pid для просмотра
         while (cont) {
             logger.info("Создаем объекты. " + sdf.format(Calendar.getInstance().getTime()));
 
             for (int i = 0; i < 5; i++) {
                 createObjects();
                 Thread.sleep(1000);
-
+                logger.info(str);
             }
             logger.info("Удаляем объекты." + sdf.format(Calendar.getInstance().getTime()));
             for (int i = 0; i < 5; i++) {

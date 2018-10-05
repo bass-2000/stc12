@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class EmployeeDataTest {
@@ -13,7 +14,7 @@ public class EmployeeDataTest {
         Employee employee1 = new Employee("Alex", 28, 98000, Job.ENGENEER);
         EmployeeData.clearFile();
         EmployeeData.save(employee1);
-        ArrayList<Employee> list = EmployeeData.readListFromFile();
+        List<Employee> list = EmployeeData.readListFromFile();
         Assertions.assertEquals(employee1, list.get(0));
     }
 
@@ -24,7 +25,7 @@ public class EmployeeDataTest {
         Employee employee2 = new Employee("Fill", 29, 90800, Job.ADMINISTRATOR);
         Assertions.assertTrue(EmployeeData.save(employee1));
         Assertions.assertTrue(EmployeeData.save(employee2));
-        ArrayList<Employee> list = new ArrayList<>();
+        List<Employee> list = new ArrayList<>();
         list.add(employee1);
         list.add(employee2);
         Assertions.assertEquals(list, EmployeeData.readListFromFile());

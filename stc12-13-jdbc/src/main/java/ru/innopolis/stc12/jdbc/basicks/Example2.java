@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static ru.innopolis.stc12.jdbc.basicks.Example.logResultSet;
+
 public class Example2 {
     static ResultSet resultSet;
     private static Logger logger = Logger.getLogger(Example2.class);
@@ -20,12 +22,8 @@ public class Example2 {
         ) {
             preparedStatement.setString(1, "Rostov");
             preparedStatement.setInt(2, 19);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                logger.info(resultSet.getString("name") + "; ");
-                logger.info(resultSet.getString("family_name") + "; ");
-                logger.info(resultSet.getInt("age") + "; ");
-                logger.info(resultSet.getString("city") + "; ");
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                logResultSet(resultSet);
             }
             resultSet.close();
         } catch (SQLException e) {
