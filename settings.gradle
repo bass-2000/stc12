@@ -23,4 +23,5 @@ include 'stc12-22-kafka'
 include 'stc12-23-springPostProcess'
 include 'stc12-24-jmsTemplate'
 include 'stc12-25-hibernate'
+include 'stc12-26-mongo'
 
