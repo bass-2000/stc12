@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.innopolis.stc12'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-jms', version: '4.3.20.RELEASE'
+    compile group: 'org.apache.activemq', name: 'activemq-all', version: '5.15.7'
+}

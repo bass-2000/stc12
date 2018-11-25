@@ -19,4 +19,8 @@ include 'stc12-18-ioc'
 include 'stc12-19-Spring'
 include 'stc12-20-springBoot'
 include 'stc12-21-simpleJms'
+include 'stc12-22-kafka'
+include 'stc12-23-springPostProcess'
+include 'stc12-24-jmsTemplate'
+include 'stc12-25-hibernate'
 

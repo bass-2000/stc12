@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.innopolis.stc12'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.0.0'
+    compile 'ch.qos.logback:logback-classic:1.2.2'
+}
