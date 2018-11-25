@@ -14,6 +14,7 @@ include 'stc12-13-jdbc'
 include 'stc12-14-logger'
 include 'stc12-15-testing'
 include 'stc12-16-servlet'
-
-
+include 'stc12-17-fundamental_patterns'
+include 'stc12-18-ioc'
+include 'stc12-19-Spring'
 
