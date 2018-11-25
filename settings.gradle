@@ -18,4 +18,5 @@ include 'stc12-17-fundamental_patterns'
 include 'stc12-18-ioc'
 include 'stc12-19-Spring'
 include 'stc12-20-springBoot'
+include 'stc12-21-simpleJms'
 
